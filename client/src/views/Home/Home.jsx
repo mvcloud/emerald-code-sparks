@@ -3,6 +3,7 @@ import Logo from "../../assets/casmm_logo.png";
 import NavBar from "../../components/NavBar/NavBar";
 import './Home.less';
 import HomeJoin from "./HomeJoin";
+import TeacherLogin from '../TeacherLogin/TeacherLogin';
 
 const Home = () => (
     <div className='container nav-padding'>
@@ -11,6 +12,7 @@ const Home = () => (
             <img src={Logo} id='casmm-logo' alt='logo'/>
             <HomeJoin />
         </div>
+        <TeacherLogin />
     </div>
 )
 

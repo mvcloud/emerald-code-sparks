@@ -102,8 +102,29 @@ export default function NavBar() {
     </Menu>
   );
 
+  const aboutMenu = (
+    <Menu>
+      <Menu.Item key='0' onClick={() => handleRouteChange(routes.About)}>
+          About CASMM
+      </Menu.Item>
+
+      <Menu.Item key='1' onClick={() => handleRouteChange(routes.HowItWorks)}>
+          How It Works
+      </Menu.Item>
+
+      <Menu.Item key='2' onClick={() => handleRouteChange(routes.OurTeam)}>
+          Our Team
+      </Menu.Item>
+
+      <Menu.Item key='3' onClick={() => handleRouteChange(routes.FAQ)}>
+          FAQ
+      </Menu.Item>
+
+    </Menu>
+  );
+
   return (
-    <span id='navBar'>
+    <div id='navBar'>
       <Link
         id='link'
         to={
@@ -120,16 +141,21 @@ export default function NavBar() {
       >
         <img src={Logo} id='casmm-logo' alt='logo' />
       </Link>
-      <div id='dropdown-menu'>
-        <Dropdown overlay={menu} trigger={['click']}>
+      
+      <Dropdown overlay={aboutMenu} trigger={['hover']} className='navbar-text'>
           <button
             className='ant-dropdown-link'
             onClick={(e) => e.preventDefault()}
           >
-            {value.name ? value.name : 'Menu'} <DownOutlined />
+            {value.name ? value.name : 'ABOUT'} 
           </button>
-        </Dropdown>
-      </div>
-    </span>
+      </Dropdown>
+
+      <p className='navbar-text' onClick={() => handleRouteChange(routes.Gallery)}>GALLERY</p>
+      <p className='navbar-text' onClick={() => {
+            localStorage.removeItem('sandbox-activity');
+            handleRouteChange(routes.Sandbox);
+          }}>CREATE</p>
+    </div>
   );
 }
