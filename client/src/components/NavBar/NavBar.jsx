@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import './NavBar.less';
 import config from './NavBarConfig.json';
 import Logo from '../../assets/casmm_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, Dropdown } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { BarsOutlined, CloseOutlined, DownOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
 import { useGlobalState } from '../../Utils/userState';
 
@@ -13,6 +13,15 @@ export default function NavBar() {
   let currentRoute = window.location.pathname;
   let navigate = useNavigate();
   let routes = config.routes;
+  
+  const toggleNavbar = () => {
+    var x = document.getElementById("navBar");
+      if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
+  };
 
   const handleLogout = () => {
     removeUserSession();
@@ -28,6 +37,8 @@ export default function NavBar() {
     return config.users[value.role].includes(route);
   };
 
+  {/* this is the old code for the original dropdown menu. i kept it in case we need it again.
+  
   const menu = (
     <Menu>
       {shouldShowRoute('Home') ? (
@@ -92,7 +103,7 @@ export default function NavBar() {
           <i className='fa fa-calendar-times' />
           &nbsp; Report a Bug
         </Menu.Item>
-      ) : null}
+      ) : null}3
       {shouldShowRoute('SignOut') ? (
         <Menu.Item key='8' onClick={() => handleLogout()}>
           <i className='fa fa-sign-out-alt' />
@@ -100,31 +111,10 @@ export default function NavBar() {
         </Menu.Item>
       ) : null}
     </Menu>
-  );
-
-  const aboutMenu = (
-    <Menu>
-      <Menu.Item key='0' onClick={() => handleRouteChange(routes.About)}>
-          About CASMM
-      </Menu.Item>
-
-      <Menu.Item key='1' onClick={() => handleRouteChange(routes.HowItWorks)}>
-          How It Works
-      </Menu.Item>
-
-      <Menu.Item key='2' onClick={() => handleRouteChange(routes.OurTeam)}>
-          Our Team
-      </Menu.Item>
-
-      <Menu.Item key='3' onClick={() => handleRouteChange(routes.FAQ)}>
-          FAQ
-      </Menu.Item>
-
-    </Menu>
-  );
+      );*/}
 
   return (
-    <div id='navBar'>
+    <div id='navBar' className='topnav'>
       <Link
         id='link'
         to={
@@ -141,21 +131,29 @@ export default function NavBar() {
       >
         <img src={Logo} id='casmm-logo' alt='logo' />
       </Link>
-      
-      <Dropdown overlay={aboutMenu} trigger={['hover']} className='navbar-text'>
-          <button
-            className='ant-dropdown-link'
-            onClick={(e) => e.preventDefault()}
-          >
-            {value.name ? value.name : 'ABOUT'} 
-          </button>
-      </Dropdown>
-
-      <p className='navbar-text' onClick={() => handleRouteChange(routes.Gallery)}>GALLERY</p>
-      <p className='navbar-text' onClick={() => {
+      <p onClick={() => handleRouteChange(routes.Home)}>HOME</p>
+      <div className="dropdown">
+        <button className="dropbtn">
+          ABOUT
+          
+        </button>
+        <div className="dropdown-content">
+          <p onClick={() => handleRouteChange(routes.About)}>ABOUT CASMM</p>
+          <p onClick={() => handleRouteChange(routes.HowItWorks)}>HOW IT WORKS</p>
+          <p onClick={() => handleRouteChange(routes.OurTeam)}>OUR TEAM</p>
+          <p onClick={() => handleRouteChange(routes.FAQ)}>FAQ</p>
+        </div>
+      </div>
+      <p onClick={() => handleRouteChange(routes.Gallery)}>GALLERY</p>
+      <p onClick={() => {
             localStorage.removeItem('sandbox-activity');
             handleRouteChange(routes.Sandbox);
           }}>CREATE</p>
+
+      <p className="icon" onClick={() => toggleNavbar()}>
+        <BarsOutlined />
+      </p>
     </div>
   );
 }
+
