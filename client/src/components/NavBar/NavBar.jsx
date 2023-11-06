@@ -1,25 +1,24 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import './NavBar.less';
 import config from './NavBarConfig.json';
 import Logo from '../../assets/casmm_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, Dropdown } from 'antd';
-import { BarsOutlined, CloseOutlined, DownOutlined } from '@ant-design/icons';
+import { BarsOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
 import { useGlobalState } from '../../Utils/userState';
 
 export default function NavBar() {
   const [value] = useGlobalState('currUser');
-  let currentRoute = window.location.pathname;
   let navigate = useNavigate();
   let routes = config.routes;
   
+  //toggle for responsive navbar dropdown
   const toggleNavbar = () => {
     var x = document.getElementById("navBar");
-      if (x.className === "topnav") {
+      if (x.className === "top-nav") {
       x.className += " responsive";
     } else {
-      x.className = "topnav";
+      x.className = "top-nav";
     }
   };
 
@@ -37,7 +36,7 @@ export default function NavBar() {
   };
 
   return (
-    <div id='navBar' className='topnav'>
+    <div id='navBar' className='top-nav'>
       <Link
         id='link'
         to={
@@ -54,14 +53,15 @@ export default function NavBar() {
       >
         <img src={Logo} id='casmm-logo' alt='logo' />
       </Link>
+
       {shouldShowRoute('Home') ? (
         <p onClick={() => handleRouteChange(routes.Home)}>HOME</p>
       ) : null}
+
       {shouldShowRoute('About') ? (
         <div className="dropdown">
-        <button className="dropbtn">
-          ABOUT
-          
+        <button className="drop-btn">
+          ABOUT   
         </button>
         <div className="dropdown-content">
           <p onClick={() => handleRouteChange(routes.About)}>ABOUT CASMM</p>
@@ -71,28 +71,35 @@ export default function NavBar() {
         </div>
       </div>
       ) : null}
+
       {shouldShowRoute('Dashboard') ? (
         <p onClick={() => handleRouteChange(routes.Dashboard)}>DASHBOARD</p>
       ) : null}
+
       {shouldShowRoute('ContentCreatorDashboard') ? (
         <p onClick={() => handleRouteChange(routes.ContentCreatorDashboard)}>DASHBOARD</p>
       ) : null}
+
       {shouldShowRoute('ResearcherDashboard') ? (
         <p onClick={() => handleRouteChange(routes.ResearcherDashboard)}>DASHBOARD</p>
       ) : null}
+
       {shouldShowRoute('Sandbox') ? (
               <p onClick={() => {
                 localStorage.removeItem('sandbox-activity');
                 handleRouteChange(routes.Sandbox);
               }}>CREATE</p>
       ) : null}
+
       <p onClick={() => handleRouteChange(routes.Gallery)}>GALLERY</p>
       {shouldShowRoute('BugReport') ? (
         <p onClick={() => handleRouteChange(routes.BugReport)}>REPORT A BUG</p>
       ) : null}
+
       {shouldShowRoute('SignOut') ? (
         <p onClick={() => handleLogout()}>SIGN OUT</p>
       ) : null}
+
       <p className="icon" onClick={() => toggleNavbar()}>
         <BarsOutlined />
       </p>

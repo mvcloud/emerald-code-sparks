@@ -1,6 +1,6 @@
 @import "../../assets/style.less";
 
-.topnav {
+.top-nav {
   width: 100%;
   position: -webkit-sticky;
   position: fixed;
@@ -23,7 +23,7 @@
   }
 }
 
-.topnav p {
+.top-nav p {
   float:left;
   display: block;
   text-align: center;
@@ -36,7 +36,7 @@
   margin: 0;
 }
 
-.topnav .icon {
+.top-nav .icon {
   display: none;
 }
 
@@ -45,7 +45,7 @@
   overflow: hidden;
 }
 
-.dropdown .dropbtn {   
+.dropdown .drop-btn {   
   font-size: 1.5rem;
   font-weight: 500;
   color: #colors[text-primary];
@@ -79,7 +79,7 @@
   font-weight: 500;
 }
 
-.topnav p:hover, .dropdown:hover .dropbtn, .dropdown-content p:hover {
+.top-nav p:hover, .dropdown:hover .drop-btn, .dropdown-content p:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: #colors[secondary];
@@ -92,12 +92,13 @@
   display: block;
 }
 
+//when screen is tablet size or less
 @media screen and (max-width: 768px) {
-  .topnav p, .dropdown .dropbtn {
+  .top-nav p, .dropdown .drop-btn {
     display: none;
   }
 
-  .topnav p.icon {
+  .top-nav p.icon {
     float: right;
     display: block;
     font-size: 1.8rem;
@@ -105,37 +106,38 @@
   }
 }
 
+//when screen is tablet size or less and the dropdown is toggled
 @media screen and (max-width: 768px) {
-  .topnav.responsive #link {
+  .top-nav.responsive #link {
     display: none;
   }
   
-  .topnav.responsive {
+  .top-nav.responsive {
     position: -webkit-sticky;
   }
 
-  .topnav.responsive .icon {
+  .top-nav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
   }
 
-  .topnav.responsive p {
+  .top-nav.responsive p {
     float: none;
     display: block;
     text-align: left;
   }
 
-  .topnav.responsive .dropdown {
+  .top-nav.responsive .dropdown {
     float: none;
   }
 
-  .topnav.responsive .dropdown-content {
+  .top-nav.responsive .dropdown-content {
     position: relative;
     border: none;
   }
 
-  .topnav.responsive .dropdown .dropbtn {
+  .top-nav.responsive .dropdown .drop-btn {
     display: block;
     width: 100%;
     text-align: left;
