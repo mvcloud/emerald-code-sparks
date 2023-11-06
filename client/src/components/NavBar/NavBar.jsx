@@ -33,85 +33,8 @@ export default function NavBar() {
   };
 
   const shouldShowRoute = (route) => {
-    if (currentRoute === routes[route]) return false;
     return config.users[value.role].includes(route);
   };
-
-  {/* this is the old code for the original dropdown menu. i kept it in case we need it again.
-  
-  const menu = (
-    <Menu>
-      {shouldShowRoute('Home') ? (
-        <Menu.Item key='0' onClick={() => handleRouteChange(routes.Home)}>
-          <i className='fa fa-home' />
-          &nbsp; Home
-        </Menu.Item>
-      ) : null}
-      {shouldShowRoute('Dashboard') ? (
-        <Menu.Item key='1' onClick={() => handleRouteChange(routes.Dashboard)}>
-          <i className='fa fa-home' />
-          &nbsp; Dashboard
-        </Menu.Item>
-      ) : null}
-      {shouldShowRoute('ContentCreatorDashboard') ? (
-        <Menu.Item
-          key='2'
-          onClick={() => handleRouteChange(routes.ContentCreatorDashboard)}
-        >
-          <i className='fa fa-home' />
-          &nbsp; Dashboard
-        </Menu.Item>
-      ) : null}
-      {shouldShowRoute('ResearcherDashboard') ? (
-        <Menu.Item
-          key='3'
-          onClick={() => handleRouteChange(routes.ResearcherDashboard)}
-        >
-          <i className='fa fa-home' />
-          &nbsp; Dashboard
-        </Menu.Item>
-      ) : null}
-      {shouldShowRoute('Sandbox') ? (
-        <Menu.Item
-          key='4'
-          onClick={() => {
-            localStorage.removeItem('sandbox-activity');
-            handleRouteChange(routes.Sandbox);
-          }}
-        >
-          <i className='fa fa-window-maximize' />
-          &nbsp; Sandbox
-        </Menu.Item>
-      ) : null}
-      {shouldShowRoute('TeacherLogin') ? (
-        <Menu.Item
-          key='5'
-          onClick={() => handleRouteChange(routes.TeacherLogin)}
-        >
-          <i className='fa fa-sign-in-alt' />
-          &nbsp; User Login
-        </Menu.Item>
-      ) : null}
-      {shouldShowRoute('About') ? (
-        <Menu.Item key='6' onClick={() => handleRouteChange(routes.About)}>
-          <i className='fa fa-info-circle' />
-          &nbsp; About
-        </Menu.Item>
-      ) : null}
-      {shouldShowRoute('BugReport') ? (
-        <Menu.Item key='7' onClick={() => handleRouteChange(routes.BugReport)}>
-          <i className='fa fa-calendar-times' />
-          &nbsp; Report a Bug
-        </Menu.Item>
-      ) : null}3
-      {shouldShowRoute('SignOut') ? (
-        <Menu.Item key='8' onClick={() => handleLogout()}>
-          <i className='fa fa-sign-out-alt' />
-          &nbsp; Sign Out
-        </Menu.Item>
-      ) : null}
-    </Menu>
-      );*/}
 
   return (
     <div id='navBar' className='topnav'>
@@ -131,8 +54,11 @@ export default function NavBar() {
       >
         <img src={Logo} id='casmm-logo' alt='logo' />
       </Link>
-      <p onClick={() => handleRouteChange(routes.Home)}>HOME</p>
-      <div className="dropdown">
+      {shouldShowRoute('Home') ? (
+        <p onClick={() => handleRouteChange(routes.Home)}>HOME</p>
+      ) : null}
+      {shouldShowRoute('About') ? (
+        <div className="dropdown">
         <button className="dropbtn">
           ABOUT
           
@@ -144,12 +70,29 @@ export default function NavBar() {
           <p onClick={() => handleRouteChange(routes.FAQ)}>FAQ</p>
         </div>
       </div>
+      ) : null}
+      {shouldShowRoute('Dashboard') ? (
+        <p onClick={() => handleRouteChange(routes.Dashboard)}>DASHBOARD</p>
+      ) : null}
+      {shouldShowRoute('ContentCreatorDashboard') ? (
+        <p onClick={() => handleRouteChange(routes.ContentCreatorDashboard)}>DASHBOARD</p>
+      ) : null}
+      {shouldShowRoute('ResearcherDashboard') ? (
+        <p onClick={() => handleRouteChange(routes.ResearcherDashboard)}>DASHBOARD</p>
+      ) : null}
+      {shouldShowRoute('Sandbox') ? (
+              <p onClick={() => {
+                localStorage.removeItem('sandbox-activity');
+                handleRouteChange(routes.Sandbox);
+              }}>CREATE</p>
+      ) : null}
       <p onClick={() => handleRouteChange(routes.Gallery)}>GALLERY</p>
-      <p onClick={() => {
-            localStorage.removeItem('sandbox-activity');
-            handleRouteChange(routes.Sandbox);
-          }}>CREATE</p>
-
+      {shouldShowRoute('BugReport') ? (
+        <p onClick={() => handleRouteChange(routes.BugReport)}>REPORT A BUG</p>
+      ) : null}
+      {shouldShowRoute('SignOut') ? (
+        <p onClick={() => handleLogout()}>SIGN OUT</p>
+      ) : null}
       <p className="icon" onClick={() => toggleNavbar()}>
         <BarsOutlined />
       </p>
