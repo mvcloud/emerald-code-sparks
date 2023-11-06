@@ -31,13 +31,13 @@ export default function NavBar() {
   const menu = (
     <Menu>
       {shouldShowRoute('Home') ? (
-        <Menu.Item key='0' onClick={() => handleRouteChange(routes.Home)}>
-          <i className='fa fa-home' />
+        <Menu.Item key='0' onClick={() => handleRouteChange(routes.Home)} alt="Link to go to the home page.">
+          <i className='fa fa-home'/>
           &nbsp; Home
         </Menu.Item>
       ) : null}
       {shouldShowRoute('Dashboard') ? (
-        <Menu.Item key='1' onClick={() => handleRouteChange(routes.Dashboard)}>
+        <Menu.Item key='1' onClick={() => handleRouteChange(routes.Dashboard)} alt="Link to go to the dashboard page.">
           <i className='fa fa-home' />
           &nbsp; Dashboard
         </Menu.Item>
@@ -46,6 +46,7 @@ export default function NavBar() {
         <Menu.Item
           key='2'
           onClick={() => handleRouteChange(routes.ContentCreatorDashboard)}
+          alt="Link to go to the dashboard."
         >
           <i className='fa fa-home' />
           &nbsp; Dashboard
@@ -55,6 +56,7 @@ export default function NavBar() {
         <Menu.Item
           key='3'
           onClick={() => handleRouteChange(routes.ResearcherDashboard)}
+          alt="Link to go to the researcher dashboard."
         >
           <i className='fa fa-home' />
           &nbsp; Dashboard
@@ -67,6 +69,7 @@ export default function NavBar() {
             localStorage.removeItem('sandbox-activity');
             handleRouteChange(routes.Sandbox);
           }}
+          alt="Link to go to the sandbox for coding."
         >
           <i className='fa fa-window-maximize' />
           &nbsp; Sandbox
@@ -76,25 +79,26 @@ export default function NavBar() {
         <Menu.Item
           key='5'
           onClick={() => handleRouteChange(routes.TeacherLogin)}
+          alt="Link to go to the Teacher Login."
         >
           <i className='fa fa-sign-in-alt' />
           &nbsp; User Login
         </Menu.Item>
       ) : null}
       {shouldShowRoute('About') ? (
-        <Menu.Item key='6' onClick={() => handleRouteChange(routes.About)}>
+        <Menu.Item key='6' onClick={() => handleRouteChange(routes.About)} alt="Link to go to the about page.">
           <i className='fa fa-info-circle' />
           &nbsp; About
         </Menu.Item>
       ) : null}
       {shouldShowRoute('BugReport') ? (
-        <Menu.Item key='7' onClick={() => handleRouteChange(routes.BugReport)}>
+        <Menu.Item key='7' onClick={() => handleRouteChange(routes.BugReport)} alt="Link to go to report a bug.">
           <i className='fa fa-calendar-times' />
           &nbsp; Report a Bug
         </Menu.Item>
       ) : null}
       {shouldShowRoute('SignOut') ? (
-        <Menu.Item key='8' onClick={() => handleLogout()}>
+        <Menu.Item key='8' onClick={() => handleLogout()} alt="Button to sign out of the account.">
           <i className='fa fa-sign-out-alt' />
           &nbsp; Sign Out
         </Menu.Item>
