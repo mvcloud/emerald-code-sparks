@@ -28,14 +28,25 @@ const App = () => {
   const currentLocation = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
-    setHistory('lastVisited', currentLocation.pathname);
-  },[location.pathname]);
-  useEffect(() => {
-    const lastRoute = getHistory('lastVisted');
+    //console.log("Effect 2 is running");
+    const lastRoute = getHistory('lastVisited');
+    //console.log("Last route from storage:", lastRoute);
     if(lastRoute && lastRoute !== currentLocation.pathname){
-      navigate(lastRoute);
+      //console.log("Navigating to:", lastRoute);
+      
+      navigate(lastRoute);//load the last path
     }
+    else {
+      console.log("Not navigating since it's the current route or no previous route found.");
+    }
+
   },[]);
+  useEffect(() => {//Note! Don't put this before effect 2 or state tracking fails
+    //console.log("Effect 1 is running");
+    //console.log('Setting lastVisited to', currentLocation.pathname);
+    setHistory('lastVisited', currentLocation.pathname);//store path
+  },[currentLocation.pathname]);
+  
   return (
     <div>
       <Routes>
