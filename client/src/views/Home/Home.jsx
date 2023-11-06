@@ -8,6 +8,8 @@ import HomeJoin from "../StudentLogin/HomeJoin";
 const Home = () => (
     <div className='container nav-padding'>
         <NavBar />
+
+        {/* logo and logins */}
         <div id='join-wrapper'>
             <div>
                 <img src={Logo} alt='logo' id='home-logo'/>
@@ -16,6 +18,7 @@ const Home = () => (
             <TeacherLogin />
         </div>
 
+        {/* featured projects */}
         <div className='projects-container'>
             <h1>FEATURED PROJECTS</h1>
             <div className='projects-row'>
