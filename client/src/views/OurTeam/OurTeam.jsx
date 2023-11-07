@@ -11,11 +11,42 @@ export default function OurTeam(props) {
         <div id="logos" className="flex space-between">
         </div>
         <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt sem a diam 
-        consequat fermentum. Vestibulum laoreet metus id dui eleifend, vitae lacinia 
-        dolor tristique. Suspendisse potenti. Integer mollis et neque sodales pretium. 
-        Nulla nulla velit, convallis id augue ut, commodo elementum massa. Pellentesque eleifend 
-        nec urna ut imperdiet. Suspendisse id placerat dui. 
+          The following team members from the University of Florida have
+          contributed to the design, development, and evaluation of the CASMM
+          application:
+          <br />
+          <br />
+          Dr. Sharon Chu
+          <br />
+          Dr. Christina Gardner-McCune
+          <br />
+          Pedro Feijóo-García
+          <br />
+          Sarah Brown
+          <br />
+          Nicholas Ionata
+          <br />
+          Dakota Rennemann
+          <br />
+          Megha Nagarmunoli
+          <br />
+          Adam Tamargo
+          <br />
+          Gus Segovia
+          <br />
+          Lily Hinkeldey
+          <br />
+          Siyu Chen
+          <br />
+          Anna Le
+          <br />
+          Yerika Jimenez
+          <br />
+          Siyu Chen
+          <br />
+          Michael Pascuzzi
+          <br />
+          David Magda
         </p>
       </div>
     </div>

@@ -11,18 +11,11 @@ export default function HowItWorks(props) {
         <div id="logos" className="flex space-between">
         </div>
         <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt sem a diam 
-        consequat fermentum. Vestibulum laoreet metus id dui eleifend, vitae lacinia 
-        dolor tristique. Suspendisse potenti. Integer mollis et neque sodales pretium. 
-        Nulla nulla velit, convallis id augue ut, commodo elementum massa. Pellentesque eleifend 
-        nec urna ut imperdiet. Suspendisse id placerat dui. 
-        </p>
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt sem a diam 
-        consequat fermentum. Vestibulum laoreet metus id dui eleifend, vitae lacinia 
-        dolor tristique. Suspendisse potenti. Integer mollis et neque sodales pretium. 
-        Nulla nulla velit, convallis id augue ut, commodo elementum massa. Pellentesque eleifend 
-        nec urna ut imperdiet. Suspendisse id placerat dui. 
+        CASMM makes use of Google's Blockly JavaScript library to build a block based 
+        visual programming editor within our user interface. Programs created through 
+        the visual programming editor can be compiled into Arduino executable code and 
+        uploaded directly onto a students Arduino. These programs, once uploaded to the student's 
+        Arduino, provide support in performing a corresponding science project in the classroom. 
         </p>
       </div>
     </div>
