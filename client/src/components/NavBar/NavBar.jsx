@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.less';
 import config from './NavBarConfig.json';
-import Logo from '../../assets/casmm_logo.png';
+import Logo from '../../assets/casmm_logo11.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { BarsOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
