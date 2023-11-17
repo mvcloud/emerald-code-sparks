@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation,useNavigate } from 'react-router-dom';
 import PrivateRoute from './Utils/PrivateRoute';
 import About from './views/About/About';
 import HowItWorks from './views/HowItWorks/HowItWorks';
@@ -24,9 +24,6 @@ import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import {setHistory, getHistory} from './localStorageHelper';
-import { useNavigate } from 'react-router-dom';
-
-
 
 const App = () => {
   const currentLocation = useLocation();
@@ -36,24 +33,19 @@ const App = () => {
     const lastRoute = getHistory('lastVisited');
 
     if (isInitial && lastRoute && lastRoute !== currentLocation.pathname) {
-      // If returning to the '/sandbox' route, refresh the page
       navigate(lastRoute, { replace: true });
     }
 
     setIsInitial(false);
   }, [currentLocation.pathname]);
   useEffect(() => {//Note! Don't put this before effect 2 or state tracking fails
-    //console.log("Effect 1 is running");
-    //console.log('Setting lastVisited to', currentLocation.pathname);
     if(!isInitial){
 		console.log("pathname: "+currentLocation.pathname);
-	 if(currentLocation.pathname=='/sandbox'){window.location.reload()};
-      setHistory('lastVisited', currentLocation.pathname);//store path
+	 if(currentLocation.pathname==='/sandbox'){window.location.reload();}
+		
+	 setHistory('lastVisited', currentLocation.pathname);//store path
     }
   },[currentLocation.pathname, navigate]);//render if oath change
-
-
-
 
   if(isInitial){
     //console.log("directed");

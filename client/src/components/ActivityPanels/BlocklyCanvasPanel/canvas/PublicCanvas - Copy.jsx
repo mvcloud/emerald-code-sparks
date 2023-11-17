@@ -13,8 +13,8 @@ import {
 } from '../../Utils/consoleHelpers';
 import ArduinoLogo from '../Icons/ArduinoLogo';
 import PlotterLogo from '../Icons/PlotterLogo';
+
 let plotId = 1;
-import { useNavigate } from 'react-router-dom';
 
 export default function PublicCanvas({ activity, isSandbox }) {
   const [hoverUndo, setHoverUndo] = useState(false);
@@ -36,17 +36,7 @@ export default function PublicCanvas({ activity, isSandbox }) {
     workspaceRef.current = window.Blockly.inject('blockly-canvas', {
       toolbox: document.getElementById('toolbox'),
     });
-	
   };
-  const navigate = useNavigate();
-useEffect(() => {
-    const timer = setTimeout(() => {
-      // Navigate to the desired URL after 18 seconds
-      navigate('/');
-    }, 10800);
-
-    return () => clearTimeout(timer); // Clear the timer when the component unmounts or when the activity changes
-  }, [navigate, activity]);
 
   useEffect(() => {
     // once the activity state is set, set the workspace and save
