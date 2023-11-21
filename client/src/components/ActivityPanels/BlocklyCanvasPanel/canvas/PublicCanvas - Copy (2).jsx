@@ -42,7 +42,7 @@ export default function PublicCanvas({ activity, isSandbox }) {
 	useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/');
-    }, 10800000);
+    }, 108000);
 
     return () => clearTimeout(timer); // Clear the timer when the component unmounts or when the activity changes
   }, [navigate, activity]);
