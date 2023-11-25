@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './StudentLogin.less';
-import Logo from '../../assets/casmm_logo.png';
+import Logo from '../../assets/code-sparks_logo.png';
 import { getStudents, postJoin } from '../../Utils/requests';
 import StudentLoginForm from './StudentLoginForm';
 import { setUserSession } from '../../Utils/AuthRequests';

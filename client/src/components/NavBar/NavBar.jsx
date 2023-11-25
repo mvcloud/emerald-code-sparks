@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavBar.less';
 import config from './NavBarConfig.json';
-import Logo from '../../assets/casmm_logo.png';
+import Logo from '../../assets/code-sparks_logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { BarsOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
@@ -51,7 +51,7 @@ export default function NavBar() {
             : '/'
         }
       >
-        <img src={Logo} id='casmm-logo' alt='logo' />
+        <img src={Logo} id='code-sparks-logo' alt='logo' />
       </Link>
 
       {shouldShowRoute('Home') ? (
@@ -64,7 +64,7 @@ export default function NavBar() {
           ABOUT   
         </button>
         <div className="dropdown-content">
-          <p onClick={() => handleRouteChange(routes.About)}>ABOUT CASMM</p>
+          <p onClick={() => handleRouteChange(routes.About)}>ABOUT Code Sparks</p>
           <p onClick={() => handleRouteChange(routes.HowItWorks)}>HOW IT WORKS</p>
           <p onClick={() => handleRouteChange(routes.OurTeam)}>OUR TEAM</p>
           <p onClick={() => handleRouteChange(routes.FAQ)}>FAQ</p>

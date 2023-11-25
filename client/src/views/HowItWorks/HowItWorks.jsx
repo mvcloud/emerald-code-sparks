@@ -11,7 +11,7 @@ export default function HowItWorks(props) {
         <div id="logos" className="flex space-between">
         </div>
         <p>
-        CASMM makes use of Google's Blockly JavaScript library to build a block based 
+        Code Sparks makes use of Google's Blockly JavaScript library to build a block based 
         visual programming editor within our user interface. Programs created through 
         the visual programming editor can be compiled into Arduino executable code and 
         uploaded directly onto a students Arduino. These programs, once uploaded to the student's 

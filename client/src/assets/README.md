@@ -34,7 +34,7 @@ The background for all text boxes will be white (#colors[INSERT LATER]) with the
 
 ### Title:
 
-Label: "ABOUT CASMM", “HOW IT WORKS”, “OUR TEAM”.
+Label: "ABOUT Code Sparks", “HOW IT WORKS”, “OUR TEAM”.
 
 Text Color: black at colors[INSERT].
 
@@ -302,7 +302,7 @@ All text in this document will be assumed to be in the font "KOULEN" unless stat
 
 Functionality: A user interface element designed to offer a list of options or links. When the user clicks or hovers over the primary label (in this instance, "About Dropdown"), the list expands downwards to display multiple related items.
 
-Design: The dropdown menu has a clear heading, "About CASMM", which possibly indicates the main category or section. Beneath this heading, there are three distinct options listed vertically: "HOW IT WORKS", "OUR TEAM", and "FAQ". 
+Design: The dropdown menu has a clear heading, "About Code Sparks", which possibly indicates the main category or section. Beneath this heading, there are three distinct options listed vertically: "HOW IT WORKS", "OUR TEAM", and "FAQ". 
 
 Font: Each option is presented in uppercase letters, in font “KOULEN”.
 
