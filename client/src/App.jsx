@@ -23,15 +23,58 @@ import StudentLogin from './views/StudentLogin/StudentLogin';
 import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
-import {setHistory, getHistory} from './localStorageHelper';
+import {setHistory, getHistory, clearAllHistroy} from './localStorageHelper';
 import { useNavigate } from 'react-router-dom';
-
-
+import { useGlobalState, setUserState} from './Utils/userState';
+const LOCAL_STORAGE_TIMER = 1000 * 60 * 60 * 24;
+const SESSION_TIMER = 1000 * 60 * 15;
 
 const App = () => {
   const currentLocation = useLocation();
   const navigate = useNavigate();
   const [isInitial, initializeFirst] = useState(true);
+  const [inactiveTimer, setInactiveTimer] = useState(null);
+  const [sessionTimer, setSessionTimer] = useState(null);
+  const [currentUser] = useGlobalState('currUser');
+  const handleSessionTimeout = () => {
+    if(currentUser.role !== 'DefaultUser'){
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('user');
+      setUserState(getCurrUser());
+      navigate('/login');
+      console.log("going back to login");
+    }
+    else{
+      navigate('/');
+    }
+    
+  }
+  const resetSessionTimer = () => {
+    clearTimeout(sessionTimer);
+    setSessionTimer(setTimeout(handleSessionTimeout, SESSION_TIMER));
+  }
+  const resetInactiveTimer = () => {
+    clearTimeout(inactiveTimer);
+    setInactiveTimer(setTimeout(clearAllHistroy, LOCAL_STORAGE_TIMER));
+  }
+  const resetTimers = () => {
+    resetSessionTimer();
+    resetInactiveTimer();
+  }
+  useEffect(() => {
+    document.addEventListener('mousemove', resetTimers);
+    document.addEventListener('keydown', resetTimers);
+    document.addEventListener('scroll', resetTimers);
+    resetInactiveTimer();
+    resetSessionTimer();
+    return () => {
+      clearTimeout(inactiveTimer);
+      clearTimeout(sessionTimer);
+      document.removeEventListener('mousemove', resetTimers);
+      document.removeEventListener('keydown', resetTimers);
+      document.removeEventListener('scroll', resetTimers);
+    }
+  },[])
   useEffect(() => {
     //console.log("Effect 2 is running");
     const lastRoute = getHistory('lastVisited');
