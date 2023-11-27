@@ -26,23 +26,26 @@ import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import {setHistory, getHistory} from './localStorageHelper';
 
 
+
 const App = () => {
   const currentLocation = useLocation();
   const navigate = useNavigate();
   const [isInitial, setIsInitial] = useState(true);
   useEffect(() => {
     const lastRoute = getHistory('lastVisited');
+    if(isInitial && lastRoute && lastRoute !== currentLocation.pathname){
+      
+      navigate(lastRoute, {replace: true});//load the last path
+      
+    }
+    setIsInitial(false);//run on first open!
 
-    setIsInitial(false);
-  }, [currentLocation.pathname]);
+  },[currentLocation.pathname]);
   useEffect(() => {//Note! Don't put this before effect 2 or state tracking fails
     if(!isInitial){
-		console.log("pathname: "+currentLocation.pathname);
-	 if(currentLocation.pathname==='/sandbox'){window.location.reload();}
-		
-	 setHistory('lastVisited', currentLocation.pathname);//store path
+      setHistory('lastVisited', currentLocation.pathname);//store path
     }
-  },[currentLocation.pathname, navigate]);//render if oath change
+  },[currentLocation.pathname]);//render if oath change
 
   if(isInitial){
     return <div>Directing to where you left off...</div>;

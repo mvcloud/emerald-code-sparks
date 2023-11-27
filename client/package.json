@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
+  "type":"module",
   "dependencies": {
     "@loadable/component": "^5.15.2",
     "antd": "^4.24.8",
