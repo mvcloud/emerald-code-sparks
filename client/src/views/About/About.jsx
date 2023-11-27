@@ -10,18 +10,29 @@ export default function About(props) {
   const [isDarkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check the device's system preference
+    // Check the device's system preferences
     const defaultMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setDarkMode(defaultMode);
 
+    // Listen for changes in mode preference
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (event) => {
+        setDarkMode(event.matches);
+    }
+
+    mediaQuery.addEventListener("change", () => {
+        handleChange(event);
+    })
+
   }, []);
 
-  const toggleDarkMode = () => {
+    // change between light and dark mode
+  const toggleMode = () => {
     setDarkMode(!isDarkMode);
   };
-
-
+  
   return (
+        // change between light and dark css/less depending on state
     <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
       {isDarkMode && <DarkNavBar/>}
       {!isDarkMode && <NavBar/>}
@@ -100,7 +111,7 @@ export default function About(props) {
           David Magda
         </p>
       </div>
-      <button className={isDarkMode ? 'toggle-dark' : 'toggle-light'} onClick={toggleDarkMode}> Toggle {isDarkMode ? 'Light' : 'Dark'} Mode </button>
+      <button className={isDarkMode ? 'toggle-dark' : 'toggle-light'} onClick={toggleMode}> Toggle {isDarkMode ? 'Light' : 'Dark'} Mode </button>
     </div>
   )
 }

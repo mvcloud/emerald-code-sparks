@@ -8,28 +8,34 @@ export default function Gallery(props) {
   const [isDarkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check the initial color scheme
+    // Check the device's system preferences
     const defaultMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setDarkMode(defaultMode);
 
-    // Listen for changes in color scheme preference
+    // Listen for changes in mode preference
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (event) => setDarkMode(event.matches);
+    const handleChange = (event) => {
+        setDarkMode(event.matches);
+    }
 
-    mediaQuery.addListener(handleChange);
+    mediaQuery.addEventListener("change", () => {
+        handleChange(event);
+    })
 
   }, []);
 
-  const toggleDarkMode = () => {
+    // change between light and dark mode
+  const toggleMode = () => {
     setDarkMode(!isDarkMode);
   };
 
   return (
+    // change between light and dark css/less depending on state
     <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
     {isDarkMode && <DarkNavBar/>}
     {!isDarkMode && <NavBar/>}
         <h1>Gallery</h1>
-      <button className={isDarkMode ? 'toggle-dark' : 'toggle-light'} onClick={toggleDarkMode}> Toggle {isDarkMode ? 'Light' : 'Dark'} Mode </button>
+      <button className={isDarkMode ? 'toggle-dark' : 'toggle-light'} onClick={toggleMode}> Toggle {isDarkMode ? 'Light' : 'Dark'} Mode </button>
     </div>
   )
 }
