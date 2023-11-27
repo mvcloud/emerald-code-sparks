@@ -43,6 +43,7 @@ const App = () => {
   },[currentLocation.pathname]);
   useEffect(() => {//Note! Don't put this before effect 2 or state tracking fails
     if(!isInitial){
+		 if(currentLocation.pathname==='/sandbox'){window.location.reload();}
       setHistory('lastVisited', currentLocation.pathname);//store path
     }
   },[currentLocation.pathname]);//render if oath change
