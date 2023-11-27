@@ -10,15 +10,9 @@ export default function About(props) {
   const [isDarkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check the initial color scheme
+    // Check the device's system preference
     const defaultMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setDarkMode(defaultMode);
-
-    // Listen for changes in color scheme preference
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (event) => setDarkMode(event.matches);
-
-    mediaQuery.addListener(handleChange);
 
   }, []);
 
