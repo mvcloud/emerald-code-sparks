@@ -43,9 +43,9 @@ function Student() {
   return (
     <div className='container nav-padding'>
       <NavBar />
-      <div id='activity-container' tabIndex={0} >
-        <div id='header'>
-          <div>Select your Activity</div>
+      <div id='activity-container' tabIndex="0" >
+        <div id='header' tabindex="-1">
+          <div tabindex="-1">Select your Activity</div>
         </div>
         <ul>
           {learningStandard.activities ? (
@@ -56,7 +56,7 @@ function Student() {
                   key={activity.id}
                   id='list-item-wrapper'
                   onClick={() => handleSelection(activity)}
-                  tabIndex={activity.id - learningStandard.activities[0].id + 1}
+                  tabIndex="0"
                 >
                   <li>{`${learningStandard.name}: Activity ${activity.number}`}</li>
                 </div>
