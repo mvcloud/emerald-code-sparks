@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import BlocklyCanvasPanel from "../../components/ActivityPanels/BlocklyCanvasPanel/BlocklyCanvasPanel"
 import NavBar from "../../components/NavBar/NavBar"
+import DarkNavBar from "../../components/NavBar/DarkNavBar";
+
 import {
   getAuthorizedWorkspaceToolbox,
   getActivityToolbox,
@@ -72,12 +74,36 @@ export default function BlocklyPage({ isSandbox }) {
     setup()
   }, [isSandbox, navigate, value.role])
 
-  return (
-    <div className="container nav-padding">
-      <NavBar />
+  const [isDarkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check the initial color scheme
+    const defaultMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(defaultMode);
+
+    // Listen for changes in color scheme preference
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => setDarkMode(e.matches);
+
+    mediaQuery.addListener(handleChange);
+
+  }, []);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!isDarkMode);
+  };
+
+
+return (
+    <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'} >
+        {/* Display Light or Dark Mode Nav Bar depending on state */}
+        {isDarkMode && <DarkNavBar/>}
+        {!isDarkMode && <NavBar/>}
       <div className="flex flex-row">
         <BlocklyCanvasPanel activity={activity} setActivity={setActivity} isSandbox={isSandbox} />
+        
       </div>
+      <button className={isDarkMode ? 'toggle-dark' : 'toggle-light'} onClick={toggleDarkMode}> Toggle {isDarkMode ? 'Light' : 'Dark'} Mode </button>
     </div>
   )
 }

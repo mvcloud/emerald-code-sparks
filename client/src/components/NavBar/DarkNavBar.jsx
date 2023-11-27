@@ -1,5 +1,5 @@
 import React from 'react';
-import './NavBar.less';
+import './DarkNavBar.less';
 import config from './NavBarConfig.json';
 import Logo from '../../assets/casmm_logo.png';
 import { useNavigate } from 'react-router-dom';
@@ -8,18 +8,18 @@ import { removeUserSession } from '../../Utils/AuthRequests';
 import { useGlobalState } from '../../Utils/userState';
 
 
-export default function NavBar() {
+export default function DarkNavBar() {
   const [value] = useGlobalState('currUser');
   let navigate = useNavigate();
   let routes = config.routes;
   
   //toggle for responsive navbar dropdown
   const toggleNavbar = () => {
-    const x = document.getElementById("navBar");
-      if (x.className === "top-nav") {
+    const x = document.getElementById("navBarDark");
+      if (x.className === "top-nav-dark") {
       x.className += " responsive";
     } else {
-      x.className = "top-nav";
+      x.className = "top-nav-dark";
     }
   };
 
@@ -37,7 +37,7 @@ export default function NavBar() {
   };
 
   return (
-    <div id='navBar' className='top-nav'>
+    <div id='navBarDark' className='top-nav-dark'>
       <img src={Logo} id='logo' alt='logo' />
 
       {/* the navbar will show paths based on the user's role */}
@@ -48,11 +48,11 @@ export default function NavBar() {
       ) : null}
 
       {shouldShowRoute('About') ? (
-        <div className="dropdown">
+        <div className="dropdown-dark">
         <button className="drop-btn">
           ABOUT   
         </button>
-        <div className="dropdown-content">
+        <div className="dropdown-dark-content">
           <p onClick={() => handleRouteChange(routes.About)}
             onKeyUp={() => handleRouteChange(routes.About)}
           >ABOUT CASMM</p>

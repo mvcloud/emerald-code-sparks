@@ -1,16 +1,16 @@
 @import "../../assets/style.less";
 
-.top-nav {
+.top-nav-dark {
   width: 100%;
   position: -webkit-sticky;
   position: fixed;
   top: 0;
   z-index: 2;
-  background-color: #colors[tertiary];
+  background-color: #colors[tertiary-dark];
 
-  -moz-box-shadow:    0 1px 5px -1px darken(#colors[tertiary], 70%);
-  -webkit-box-shadow: 0 1px 5px -1px darken(#colors[tertiary], 70%);
-  box-shadow:         0 1px 5px -1px darken(#colors[tertiary], 70%);
+  -moz-box-shadow:    0 1px 5px -1px darken(#colors[tertiary-dark], 70%);
+  -webkit-box-shadow: 0 1px 5px -1px darken(#colors[tertiary-dark], 70%);
+  box-shadow:         0 1px 5px -1px darken(#colors[tertiary-dark], 70%);
 
     #logo {
       float: left;
@@ -21,53 +21,55 @@
     }
 }
 
-.top-nav p {
+.top-nav-dark p {
   float:left;
   display: block;
   text-align: center;
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 500;
-  color: #colors[text-primary];
+  color: #colors[text-primary-dark];
   padding: 25px;
   padding-top: 15px;
   margin: 0;
 }
 
-.top-nav .icon {
+.top-nav-dark .icon {
   display: none;
 }
 
-.dropdown {
+.dropdown-dark {
   float: left;
   overflow: hidden;
 }
 
-.dropdown .drop-btn {   
+.dropdown-dark .drop-btn {   
+    font-family: 'Koulen', sans-serif;
+
   font-size: 1.5rem;
   font-weight: 500;
-  color: #colors[text-primary];
+  color: #colors[text-primary-dark];
   border: none;
   outline: none;
-  background-color: #colors[tertiary];
+  background-color: #colors[tertiary-dark];
   margin: 0;
   padding: 25px;
   padding-top: 15px;
 }
 
-.dropdown-content {
+.dropdown-dark-content {
   display: none;
   position: absolute;
-  background-color: #colors[tertiary];
+  background-color: #colors[tertiary-dark];
   min-width: 160px;
   z-index: 1;
   border-radius: 10px;
-  border: 2px solid #colors[secondary];
+  border: 2px solid #colors[secondary-dark];
 }
 
-.dropdown-content p {
+.dropdown-dark-content p {
   float: none;
-  color:#colors[text-primary];
+  color:#colors[text-primary-dark];
   text-decoration: none;
   display: block;
   text-align: left; 
@@ -77,26 +79,26 @@
   font-weight: 500;
 }
 
-.top-nav p:hover, .dropdown:hover .drop-btn, .dropdown-content p:hover {
+.top-nav-dark p:hover, .dropdown-dark:hover .drop-btn, .dropdown-dark-content p:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
-  text-decoration-color: #colors[secondary];
+  text-decoration-color: #colors[secondary-dark];
   text-decoration-thickness: 3px;
   text-decoration-style: solid;
   cursor: pointer;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-dark:hover .dropdown-dark-content {
   display: block;
 }
 
 //when screen is tablet size or less
 @media screen and (max-width: 768px) {
-  .top-nav p, .dropdown .drop-btn {
+  .top-nav-dark p, .dropdown-dark .drop-btn {
     display: none;
   }
 
-  .top-nav p.icon {
+  .top-nav-dark p.icon {
     float: right;
     display: block;
     font-size: 1.8rem;
@@ -104,40 +106,44 @@
   }
 }
 
-//when screen is tablet size or less and the dropdown is toggled
+//when screen is tablet size or less and the dropdown-dark is toggled
 @media screen and (max-width: 768px) {
-  .top-nav.responsive #logo {
+  .top-nav-dark.responsive #logo {
     display: none;
   }
   
-  .top-nav.responsive {
+  .top-nav-dark.responsive {
     position: -webkit-sticky;
   }
 
-  .top-nav.responsive .icon {
+  .top-nav-dark.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
   }
 
-  .top-nav.responsive p {
+  .top-nav-dark.responsive p {
     float: none;
     display: block;
     text-align: left;
   }
 
-  .top-nav.responsive .dropdown {
+  .top-nav-dark.responsive .dropdown-dark {
     float: none;
   }
 
-  .top-nav.responsive .dropdown-content {
+  .top-nav-dark.responsive .dropdown-dark-content {
     position: relative;
     border: none;
   }
 
-  .top-nav.responsive .dropdown .drop-btn {
+  .top-nav-dark.responsive .dropdown-dark .drop-btn {
     display: block;
     width: 100%;
     text-align: left;
   }
 }
+
+p {
+    font-family: 'Koulen', sans-serif;
+  }
