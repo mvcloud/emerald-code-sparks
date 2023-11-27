@@ -27,75 +27,64 @@ import {setHistory, getHistory, clearAllHistroy, handleLogout} from './localStor
 import { useNavigate } from 'react-router-dom';
 import { getCurrUser } from './Utils/userState';
 const LOCAL_STORAGE_TIMER = 1000 * 60 * 60 * 24;
-const SESSION_TIMER = 1000 * 5;
+const SESSION_TIMER = 1000 * 60 * 15;
 
 const App = () => {
   const currentLocation = useLocation();
   const navigate = useNavigate();
-  const [isInitial, initializeFirst] = useState(true);
+  const [isInitial, setIsInitial] = useState(true);
   const [inactiveTimer, setInactiveTimer] = useState(null);
   const [sessionTimer, setSessionTimer] = useState(null);
   const handleSessionTimeout = () => {
     if(getCurrUser() !== 'DefaultUser'){
-      handleLogout();
+      handleLogout();//use existing logout function
     }
     else{
-      navigate('/');
+      navigate('/');//for default users, restore to main page
     }
     
   }
   const resetSessionTimer = () => {
     clearTimeout(sessionTimer);
-    setSessionTimer(setTimeout(handleSessionTimeout, SESSION_TIMER));
+    setSessionTimer(setTimeout(handleSessionTimeout, SESSION_TIMER));//session timer reset function
   }
   const resetInactiveTimer = () => {
     clearTimeout(inactiveTimer);
-    setInactiveTimer(setTimeout(clearAllHistroy, LOCAL_STORAGE_TIMER));
+    setInactiveTimer(setTimeout(clearAllHistroy, LOCAL_STORAGE_TIMER));//local storage timer reset function
   }
   const resetTimers = () => {
     resetSessionTimer();
     resetInactiveTimer();
-  }
+  }//timers reset function for events
   useEffect(() => {
     document.addEventListener('mousemove', resetTimers);
     document.addEventListener('keydown', resetTimers);
-    document.addEventListener('scroll', resetTimers);
-    resetInactiveTimer();
-    resetSessionTimer();
+    document.addEventListener('scroll', resetTimers);//active events
+    resetTimers();
     return () => {
       clearTimeout(inactiveTimer);
       clearTimeout(sessionTimer);
       document.removeEventListener('mousemove', resetTimers);
       document.removeEventListener('keydown', resetTimers);
-      document.removeEventListener('scroll', resetTimers);
+      document.removeEventListener('scroll', resetTimers);//active events
     }
   },[])
   useEffect(() => {
-    //console.log("Effect 2 is running");
     const lastRoute = getHistory('lastVisited');
-    //console.log("Last route from storage:", lastRoute);
     if(isInitial && lastRoute && lastRoute !== currentLocation.pathname){
-      //console.log("Navigating to:", lastRoute);
-      
       navigate(lastRoute, {replace: true});//load the last path
-      
     }
-    //else {
-      //console.log("Not navigating.");
-    //}console.log(navigate);
-    initializeFirst(false);//run on first open!
+    setIsInitial(false);//run on first open!
 
   },[currentLocation.pathname]);
   useEffect(() => {//Note! Don't put this before effect 2 or state tracking fails
-    //console.log("Effect 1 is running");
-    //console.log('Setting lastVisited to', currentLocation.pathname);
     if(!isInitial){
+      if(currentLocation.pathname==='/sandbox'){window.location.reload();}
       setHistory('lastVisited', currentLocation.pathname);//store path
     }
   },[currentLocation.pathname]);//render if oath change
 
   if(isInitial){
-    //console.log("directed");
     return <div>Directing to where you left off...</div>;
   }//loading spinner in case loading time too long
   
