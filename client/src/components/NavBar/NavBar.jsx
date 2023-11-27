@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { BarsOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
 import { useGlobalState } from '../../Utils/userState';
+import { Link } from 'react-router-dom';
 import Settings from '../Settings/Settings';
 
 export default function NavBar() {
@@ -39,7 +40,8 @@ export default function NavBar() {
 
   return (
     <div id='navBar' className='top-nav'>
-      <img src={Logo} id='logo' alt='logo' />
+    {/* Directly attach an onClick event handler to the image */}
+    <img src={Logo} id='logo' alt='logo' onClick={() => handleRouteChange(routes.Home)} />
 
       {/* the navbar will show paths based on the user's role */}
       {shouldShowRoute('Home') ? (
@@ -133,4 +135,3 @@ export default function NavBar() {
     </div>
   );
 }
-
