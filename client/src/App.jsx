@@ -25,16 +25,13 @@ import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import {setHistory, getHistory} from './localStorageHelper';
 
+
 const App = () => {
   const currentLocation = useLocation();
   const navigate = useNavigate();
   const [isInitial, setIsInitial] = useState(true);
   useEffect(() => {
     const lastRoute = getHistory('lastVisited');
-
-    if (isInitial && lastRoute && lastRoute !== currentLocation.pathname) {
-      navigate(lastRoute, { replace: true });
-    }
 
     setIsInitial(false);
   }, [currentLocation.pathname]);
@@ -48,7 +45,6 @@ const App = () => {
   },[currentLocation.pathname, navigate]);//render if oath change
 
   if(isInitial){
-    //console.log("directed");
     return <div>Directing to where you left off...</div>;
   }//loading spinner in case loading time too long
   
