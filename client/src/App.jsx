@@ -23,11 +23,11 @@ import StudentLogin from './views/StudentLogin/StudentLogin';
 import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
-import {setHistory, getHistory, clearAllHistroy} from './localStorageHelper';
+import {setHistory, getHistory, clearAllHistroy, handleLogout} from './localStorageHelper';
 import { useNavigate } from 'react-router-dom';
-import { useGlobalState, setUserState} from './Utils/userState';
+import { getCurrUser } from './Utils/userState';
 const LOCAL_STORAGE_TIMER = 1000 * 60 * 60 * 24;
-const SESSION_TIMER = 1000 * 60 * 15;
+const SESSION_TIMER = 1000 * 5;
 
 const App = () => {
   const currentLocation = useLocation();
@@ -35,14 +35,9 @@ const App = () => {
   const [isInitial, initializeFirst] = useState(true);
   const [inactiveTimer, setInactiveTimer] = useState(null);
   const [sessionTimer, setSessionTimer] = useState(null);
-  const [currentUser] = useGlobalState('currUser');
   const handleSessionTimeout = () => {
-    if(currentUser.role !== 'DefaultUser'){
-      sessionStorage.removeItem('token');
-      sessionStorage.removeItem('user');
-      setUserState(getCurrUser());
-      navigate('/login');
-      console.log("going back to login");
+    if(getCurrUser() !== 'DefaultUser'){
+      handleLogout();
     }
     else{
       navigate('/');
