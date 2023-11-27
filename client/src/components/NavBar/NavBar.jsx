@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { BarsOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
 import { useGlobalState } from '../../Utils/userState';
-
+import Settings from '../Settings/Settings';
 
 export default function NavBar() {
+
   const [value] = useGlobalState('currUser');
   let navigate = useNavigate();
   let routes = config.routes;
@@ -121,6 +122,10 @@ export default function NavBar() {
       {shouldShowRoute('SignOut') ? (
         <p onClick={() => handleLogout()} onKeyUp={() => handleLogout()}>SIGN OUT</p>
       ) : null}
+
+      <div className='settings'>
+        <Settings />
+      </div>
 
       <p className="icon" onClick={() => toggleNavbar()} onKeyUp={() => toggleNavbar()}>
         <BarsOutlined />
