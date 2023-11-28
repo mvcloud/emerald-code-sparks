@@ -1,28 +1,25 @@
 import React from 'react';
-import './NavBar.less';
+import './DarkNavBar.less';
 import config from './NavBarConfig.json';
 import Logo from '../../assets/casmm_logo.png';
 import { useNavigate } from 'react-router-dom';
 import { BarsOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
 import { useGlobalState } from '../../Utils/userState';
-import Settings from '../Settings/Settings';
-import { Link } from 'react-router-dom';
 
 
-export default function NavBar() {
-
+export default function DarkNavBar() {
   const [value] = useGlobalState('currUser');
   let navigate = useNavigate();
   let routes = config.routes;
   
   //toggle for responsive navbar dropdown
   const toggleNavbar = () => {
-    const x = document.getElementById("navBar");
-      if (x.className === "top-nav") {
+    const x = document.getElementById("navBarDark");
+      if (x.className === "top-nav-dark") {
       x.className += " responsive";
     } else {
-      x.className = "top-nav";
+      x.className = "top-nav-dark";
     }
   };
 
@@ -40,43 +37,36 @@ export default function NavBar() {
   };
 
   return (
-    <div id='navBar' className='top-nav' tabIndex="0" alt="Navigation Bar">
-      <img src={Logo} id='logo' alt='logo' tabIndex="0" 
-           onClick={() => handleRouteChange(routes.Home)}
-           onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.Home)}}/>
+    <div id='navBarDark' className='top-nav-dark'>
+      <img src={Logo} id='logo' alt='logo' />
 
       {/* the navbar will show paths based on the user's role */}
       {shouldShowRoute('Home') ? (
         <p onClick={() => handleRouteChange(routes.Home)}
-          onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.Home)}}
-          tabIndex="0"
+          onKeyUp={() => handleRouteChange(routes.Home)}
         >HOME</p>
       ) : null}
 
       {shouldShowRoute('About') ? (
-        <div className="dropdown" tabIndex="0">
-        <button className="drop-btn" tabIndex="-1">
+        <div className="dropdown-dark">
+        <button className="drop-btn">
           ABOUT   
         </button>
-        <div className="dropdown-content" tabIndex="-1">
+        <div className="dropdown-dark-content">
           <p onClick={() => handleRouteChange(routes.About)}
-            onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.About)}}
-            tabIndex="0"
+            onKeyUp={() => handleRouteChange(routes.About)}
           >ABOUT CASMM</p>
 
           <p onClick={() => handleRouteChange(routes.HowItWorks)}
-            onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.HowItWorks)}}
-            tabIndex="0"
+            onKeyUp={() => handleRouteChange(routes.HowItWorks)}
           >HOW IT WORKS</p>
 
           <p onClick={() => handleRouteChange(routes.OurTeam)}
-            onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.OurTeam)}}
-            tabIndex="0"
+            onKeyUp={() => handleRouteChange(routes.OurTeam)}
           >OUR TEAM</p>
 
           <p onClick={() => handleRouteChange(routes.FAQ)}
-            onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.FAQ)}}
-            tabIndex="0"
+            onKeyUp={() => handleRouteChange(routes.FAQ)}
           >FAQ</p>
         </div>
       </div>
@@ -84,29 +74,25 @@ export default function NavBar() {
 
       {shouldShowRoute('Dashboard') ? (
         <p onClick={() => handleRouteChange(routes.Dashboard)}
-        onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.Dashboard)}}
-        tabIndex="0"
+        onKeyUp={() => handleRouteChange(routes.Dashboard)}
         >DASHBOARD</p>
       ) : null}
 
       {shouldShowRoute('StudentDashboard') ? (
         <p onClick={() => handleRouteChange(routes.StudentDashboard)}
-        onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.StudentDashboard)}}
-        tabIndex="0"
+        onKeyUp={() => handleRouteChange(routes.StudentDashboard)}
         >DASHBOARD</p>
       ) : null}
 
       {shouldShowRoute('ContentCreatorDashboard') ? (
         <p onClick={() => handleRouteChange(routes.ContentCreatorDashboard)}
-        onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.ContentCreatorDashboard)}}
-        tabIndex="0"
+        onKeyUp={() => handleRouteChange(routes.ContentCreatorDashboard)}
         >DASHBOARD</p>
       ) : null}
 
       {shouldShowRoute('ResearcherDashboard') ? (
         <p onClick={() => handleRouteChange(routes.ResearcherDashboard)}
-        onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.ResearcherDashboard)}}
-        tabIndex="0"
+          onKeyUp={() => handleRouteChange(routes.ResearcherDashboard)}
         >DASHBOARD</p>
       ) : null}
 
@@ -115,42 +101,29 @@ export default function NavBar() {
                 localStorage.removeItem('sandbox-activity');
                 handleRouteChange(routes.Sandbox);
               }}
-                onKeyUp={(e) => {
-                if (e.key === 'Enter'){
-                  localStorage.removeItem('sandbox-activity');
-                  handleRouteChange(routes.Sandbox);
-                }
+                onKeyUp={() => {
+                localStorage.removeItem('sandbox-activity');
+                handleRouteChange(routes.Sandbox);
               }}
-              tabIndex="0"
               >CREATE</p>
       ) : null}
 
       <p onClick={() => handleRouteChange(routes.Gallery)}
-        onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.Gallery)}}
-        tabIndex="0"
+        onKeyUp={() => handleRouteChange(routes.Gallery)}
       >GALLERY</p>
 
       {shouldShowRoute('BugReport') ? (
         <p onClick={() => handleRouteChange(routes.BugReport)}
-          onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.BugReport)}}
-          tabIndex="0"
+          onKeyUp={() => handleRouteChange(routes.BugReport)}
         >REPORT A BUG</p>
       ) : null}
 
       {shouldShowRoute('SignOut') ? (
-        <p onClick={() => handleLogout()} 
-          onKeyUp={(e) => {if (e.key === 'Enter') handleLogout()}}
-          tabIndex="0">SIGN OUT</p>
+        <p onClick={() => handleLogout()} onKeyUp={() => handleLogout()}>SIGN OUT</p>
       ) : null}
 
-
-      <div className='settings'>
-        <Settings />
-      </div>
-      <p className="icon" onClick={() => toggleNavbar()} 
-      onKeyUp={(e) => {if (e.key === "Enter") toggleNavbar()}}
-      tabIndex="0">
-      <BarsOutlined />
+      <p className="icon" onClick={() => toggleNavbar()} onKeyUp={() => toggleNavbar()}>
+        <BarsOutlined />
       </p>
     </div>
   );

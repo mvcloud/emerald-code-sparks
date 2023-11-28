@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import Open from "../../assets/icons8-collapse-arrow-30_OPEN.png";
 import Closed from "../../assets/icons8-collapse-arrow-30_CLOSED.png";
 import './Accordion.less';
@@ -8,6 +9,7 @@ export default function Accordion({ title, content }) {
 
   return (
     <div className="accordion-item">
+
       <div
         className={`accordion-title ${isActive ? 'active' : ''}`}
         onClick={() => setIsActive(!isActive)}
@@ -19,3 +21,4 @@ export default function Accordion({ title, content }) {
     </div>
   );
 };
+

@@ -1,14 +1,41 @@
-import React from "react"
+import React, { useState, useEffect } from 'react';
 import NSF from "../../assets/nsf_logo.png"
 import TAMU from "../../assets/tamu_logo.png"
 import UF from "../../assets/uf_logo.png"
 import NavBar from "../../components/NavBar/NavBar"
+import DarkNavBar from "../../components/NavBar/DarkNavBar";
 import "./About.less"
 
 export default function About(props) {
+  const [isDarkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check the device's system preferences
+    const defaultMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(defaultMode);
+
+    // Listen for changes in mode preference
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (event) => {
+        setDarkMode(event.matches);
+    }
+
+    mediaQuery.addEventListener("change", () => {
+        handleChange(event);
+    })
+
+  }, []);
+
+    // change between light and dark mode
+  const toggleMode = () => {
+    setDarkMode(!isDarkMode);
+  };
+  
   return (
-    <div className="container nav-padding">
-      <NavBar />
+        // change between light and dark css/less depending on state
+    <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
+      {isDarkMode && <DarkNavBar/>}
+      {!isDarkMode && <NavBar/>}
       <div id="about-content-container">
         <h1 id="title" tabIndex="0">About CASMM</h1>
         <div id="logos" className="flex space-between">
@@ -84,6 +111,7 @@ export default function About(props) {
           David Magda
         </p>
       </div>
+      <button className={isDarkMode ? 'toggle-dark' : 'toggle-light'} onClick={toggleMode}> Toggle {isDarkMode ? 'Light' : 'Dark'} Mode </button>
     </div>
   )
 }
