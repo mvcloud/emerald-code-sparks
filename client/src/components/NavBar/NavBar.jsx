@@ -6,9 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import { BarsOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
 import { useGlobalState } from '../../Utils/userState';
-
+import Settings from '../Settings/Settings';
+import { Link } from 'react-router-dom';
 
 export default function NavBar() {
+
   const [value] = useGlobalState('currUser');
   let navigate = useNavigate();
   let routes = config.routes;
@@ -38,7 +40,9 @@ export default function NavBar() {
 
   return (
     <div id='navBar' className='top-nav' tabIndex="0" alt="Navigation Bar">
-      <img src={Logo} id='logo' alt='logo' tabIndex="0"/>
+      <img src={Logo} id='logo' alt='logo' tabIndex="0" 
+           onClick={() => handleRouteChange(routes.Home)}
+           onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.Home)}}/>
 
       {/* the navbar will show paths based on the user's role */}
       {shouldShowRoute('Home') ? (
@@ -138,10 +142,13 @@ export default function NavBar() {
           tabIndex="0">SIGN OUT</p>
       ) : null}
 
+      <div className='settings'>
+        <Settings />
+      </div>
       <p className="icon" onClick={() => toggleNavbar()} 
       onKeyUp={(e) => {if (e.key === "Enter") toggleNavbar()}}
       tabIndex="0">
-        <BarsOutlined />
+      <BarsOutlined />
       </p>
     </div>
   );
