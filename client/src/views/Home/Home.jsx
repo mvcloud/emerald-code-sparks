@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Logo from "../../assets/casmm_logo11_duck.png";
 import NavBar from "../../components/NavBar/NavBar";
 import DarkNavBar from "../../components/NavBar/DarkNavBar";
@@ -39,37 +39,38 @@ return (
         {!isDarkMode && <NavBar/>}
 
         {/* logo and logins */}
-        <div id='join-wrapper'>
-            <div>
-                <img src={Logo} alt='logo' id='home-logo'/>
-            </div>
+        <div id='join-wrapper' alt="Log in Section" tabIndex="-1">
+                <img src={Logo} alt='logo' id='home-logo' tabIndex="0"/>
             <HomeJoin />
             <TeacherLogin />
         </div>
 
         {/* featured projects / display the dark or light mode depending on state */}
-        <div className={isDarkMode ? 'projects-container-dark' : 'projects-container'}>
+        <div className={isDarkMode ? 'projects-container-dark' : 'projects-container'} tabIndex="-1">
             <h1>FEATURED PROJECTS</h1>
             <div className='projects-row'>
-                <div className={isDarkMode ? "project-box-dark" : "project-box"}>
+                <div className={isDarkMode ? "project-box-dark" : "project-box"} tabIndex="0">
 
                     <div className='credits-overlay'>
                         <h1>Name 1</h1>
                     </div>
                 </div>
-                <div className={isDarkMode ? "project-box-dark" : "project-box"}>
+
+                <div className={isDarkMode ? "project-box-dark" : "project-box"} tabIndex="0">
 
                 <div className='credits-overlay'>
                         <h1>Name 2</h1>
                     </div>
                 </div>
-                <div className={isDarkMode ? "project-box-dark" : "project-box"}>
+
+                <div className={isDarkMode ? "project-box-dark" : "project-box"} tabIndex="0">
 
                 <div className='credits-overlay'>
                         <h1>Name 3</h1>
                     </div>
                 </div>
-                <div className={isDarkMode ? "project-box-dark" : "project-box"}>
+
+                <div className={isDarkMode ? "project-box-dark" : "project-box"} tabIndex="0">
 
                 <div className='credits-overlay'>
                         <h1>Name 4</h1>

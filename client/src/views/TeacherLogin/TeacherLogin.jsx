@@ -46,9 +46,10 @@ export default function TeacherLogin() {
   return (
       <div 
         id='box'
-        onKeyPress={(e) => {
+        onKeyUp={(e) => {
           if (e.key === 'Enter') handleLogin();
         }}
+      tabIndex="-1"
       >
          <h2 className='login-text'>PARENT / EDUCATOR</h2>
           <input
@@ -56,14 +57,16 @@ export default function TeacherLogin() {
             {...email}
             placeholder='Email'
             autoComplete='username'
+            tabIndex="0"
           />
           <input
             type='password'
             {...password}
             placeholder='Password'
             autoComplete='current-password'
+            tabIndex="0"
           />
-          <p id='forgot-password' onClick={() => navigate('/forgot-password')}>
+          <p id='forgot-password' onClick={() => navigate('/forgot-password')} tabIndex="0">
             Forgot Password?
           </p>
           <input
@@ -71,6 +74,7 @@ export default function TeacherLogin() {
             value={loading ? 'LOADING...' : 'LOGIN'}
             onClick={handleLogin}
             disabled={loading}
+            tabIndex="0"
           />
       </div>
   );

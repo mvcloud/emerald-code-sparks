@@ -34,10 +34,10 @@ export default function OurTeam(props) {
       {isDarkMode && <DarkNavBar/>}
       {!isDarkMode && <NavBar/>}
       <div id="about-content-container">
-        <h1 id="title">Our Team</h1>
+        <h1 id="title" tabIndex="0">Our Team</h1>
         <div id="logos" className="flex space-between">
         </div>
-        <p>
+        <p tabIndex="0">
           The following team members from the University of Florida have
           contributed to the design, development, and evaluation of the CASMM
           application:

@@ -35,10 +35,10 @@ export default function HowItWorks(props) {
       {!isDarkMode && <NavBar/>}
 
       <div id="about-content-container">
-        <h1 id="title">How It Works</h1>
+        <h1 id="title" tabIndex="0">How It Works</h1>
         <div id="logos" className="flex space-between">
         </div>
-        <p>
+        <p tabIndex="0">
         CASMM makes use of Google's Blockly JavaScript library to build a block based 
         visual programming editor within our user interface. Programs created through 
         the visual programming editor can be compiled into Arduino executable code and 

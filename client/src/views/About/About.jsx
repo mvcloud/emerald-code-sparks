@@ -37,25 +37,25 @@ export default function About(props) {
       {isDarkMode && <DarkNavBar/>}
       {!isDarkMode && <NavBar/>}
       <div id="about-content-container">
-        <h1 id="title">About CASMM</h1>
+        <h1 id="title" tabIndex="0">About CASMM</h1>
         <div id="logos" className="flex space-between">
           <img src={UF} alt="uf" />
           <img src={NSF} alt="nsf" />
           <img src={TAMU} alt="tamu" />
         </div>
-        <p>
+        <p tabIndex="0">
           CASMM is developed by the University of Florida and Texas A&M
           University with support from the National Science Foundation.
         </p>
-        <p>
+        <p tabIndex="0">
           CASMM, or Computation and Science Modeling through Making, is a
           cloud-based programming interface designed for fifth and sixth grade
           students to support them in building computational physical models for
           science experiments in the classroom.
         </p>
         <div id="divider" />
-        <h1 id="secondary-title">How it Works</h1>
-        <p>
+        <h1 id="secondary-title"  tabIndex="0">How it Works</h1>
+        <p tabIndex="0">
           CASMM makes use of Google's{" "}
           <a
             href="https://developers.google.com/blockly"
@@ -71,8 +71,8 @@ export default function About(props) {
           corresponding science project in the classroom.
         </p>
         <div id="divider" />
-        <h1 id="secondary-title">Our Team</h1>
-        <p>
+        <h1 id="secondary-title" tabIndex="0">Our Team</h1>
+        <p tabIndex="0">
           The following team members from the University of Florida have
           contributed to the design, development, and evaluation of the CASMM
           application:
