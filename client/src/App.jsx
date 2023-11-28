@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation,useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import PrivateRoute from './Utils/PrivateRoute';
 import About from './views/About/About';
 import HowItWorks from './views/HowItWorks/HowItWorks';
@@ -24,7 +24,6 @@ import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import {setHistory, getHistory, clearAllHistroy, handleLogout} from './localStorageHelper';
-import { useNavigate } from 'react-router-dom';
 import { getCurrUser } from './Utils/userState';
 const LOCAL_STORAGE_TIMER = 1000 * 60 * 60 * 24;
 const SESSION_TIMER = 1000 * 60 * 15;
