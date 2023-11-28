@@ -30,6 +30,8 @@
 
 #box {
   width: 300px;
+  height: auto;
+  min-height: 300px;
   padding: 40px 20px;
   background-color: #colors[tertiary];
   text-align: center;
@@ -114,7 +116,7 @@
   transition: 0.25s;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.377);
 
-  &:hover {
+  &:hover, &:focus {
     width: 21%;
     background: #colors[quinary];
   }
@@ -133,6 +135,10 @@
   border: 4px solid;
   border-color: #colors[secondary];
   background-color: #ffccc7 !important;
+}
+
+.join-button {
+  bottom: -30px !important;
 }
 
 #box-auth-fail select {

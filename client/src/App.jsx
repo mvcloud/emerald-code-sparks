@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation,useNavigate } from 'react-router-dom';
 import PrivateRoute from './Utils/PrivateRoute';
 import About from './views/About/About';
 import HowItWorks from './views/HowItWorks/HowItWorks';
@@ -74,6 +74,7 @@ const App = () => {
     if(isInitial && lastRoute && lastRoute !== currentLocation.pathname){
       navigate(lastRoute, {replace: true});//load the last path
     }
+    setIsInitial(false);//run on first open!
     setIsInitial(false);//run on first open!
 
   },[currentLocation.pathname]);

@@ -9,6 +9,16 @@
   text-align: center;
 }
 
+.container-dark {
+  background-color: #colors[primary-dark];
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  min-width: 100vw;
+  text-align: center;
+}
+
+
 #join-wrapper {
   margin: 1vh auto 8vh auto;
   padding: 75px 10px;
@@ -31,6 +41,20 @@
   flex-direction: column;
   margin: 30px auto;
 }
+
+#box-dark {
+  width: 300px;
+  height: 325px;
+  background-color: #colors[tertiary-dark];
+  text-align: center;
+  border-radius: 15px;
+  border-color: #colors[quaternary-dark] !important;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 30px auto;
+}
+
 
 #box input[type='text'] {
   display: block;
@@ -85,12 +109,14 @@
   border-radius: 30px;
   cursor: pointer;
   transition: 0.25s;
-  &:hover {
+  &:hover, &:focus {
     background-color: darken(#colors[quaternary], 15%);
   }
-  position: relative;
-  margin-top: auto;
-  bottom: -40px;
+
+  position: absolute;
+  margin-left: 10px;
+  margin-right: auto;
+  bottom: -30px;
 }
 
 .join-button {
@@ -113,6 +139,16 @@
   margin: 0;
 }
 
+.login-text-dark {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #colors[text-primary-dark];
+  padding: 0px 5px;
+  margin: 0;
+}
+
+
 .projects-container {
   background-color: #colors[tertiary];
 
@@ -121,6 +157,16 @@
     font-weight: bold;
   }
 }
+
+.projects-container-dark {
+  background-color: #colors[tertiary-dark];
+
+  h1 {
+    padding-top: 15px;
+    font-weight: bold;
+  }
+}
+
 
 .projects-row {
   display: flex;
@@ -140,6 +186,17 @@
   position: relative;
 }
 
+.project-box-dark {
+  width: 300px;
+  height: 300px;
+  background-color: #colors[secondary-dark];
+  text-align: center;
+  border-radius: 15px;
+  margin: 10px auto;
+  position: relative;
+}
+
+
 .project-box .credits-overlay {
   height: 100%;
   border-radius: 15px;
@@ -156,10 +213,34 @@
   }
 }
 
+.project-box-dark .credits-overlay {
+  height: 100%;
+  border-radius: 15px;
+  background-color: rgba(0,0,0,.6);
+  transition: opacity .1s linear;
+  opacity: 0;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 250px; 
+
+  h1, h2 {
+    color: #colors[text-primary-dark];
+  }
+}
+
+
+
 .project-box:hover .credits-overlay,
 .project-box:focus .credits-overlay {
   opacity: 1;
 }
+
+.project-box-dark:hover .credits-overlay,
+.project-box-dark:focus .credits-overlay {
+  opacity: 1;
+}
+
 
 #home-logo {
   height: 350px;
@@ -167,3 +248,8 @@
   padding: 50px;
   margin-top: 50px;
 }
+
+h1, h2 {
+  font-family: 'Koulen', sans-serif;
+}
+
