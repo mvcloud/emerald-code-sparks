@@ -25,8 +25,8 @@ import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import {setHistory, getHistory, clearAllHistroy, handleLogout} from './localStorageHelper';
 import { getCurrUser } from './Utils/userState';
-const LOCAL_STORAGE_TIMER = 1000 * 60 * 60 * 24;
-const SESSION_TIMER = 1000 * 60 * 5;
+const LOCAL_STORAGE_TIMER = 1000 * 60 * 60 * 24;//24 hours for public canvas to be erased
+const SESSION_TIMER = 1000 * 60 * 60;//1 hour for user to be inactive before logged out
 
 const App = () => {
   const currentLocation = useLocation();
