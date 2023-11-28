@@ -35,8 +35,9 @@ const App = () => {
   const [inactiveTimer, setInactiveTimer] = useState(null);
   const [sessionTimer, setSessionTimer] = useState(null);
   const handleSessionTimeout = () => {
-    if(getCurrUser() !== 'DefaultUser'){
+    if(getCurrUser() !== 'DefaultUser' && inactiveTimer != 0){
       handleLogout();//use existing logout function
+      resetInactiveTimer();
     }
     else{
       navigate('/');//for default users, restore to main page

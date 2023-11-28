@@ -55,7 +55,7 @@ export default function DarkNavBar() {
         <div className="dropdown-dark-content">
           <p onClick={() => handleRouteChange(routes.About)}
             onKeyUp={() => handleRouteChange(routes.About)}
-          >ABOUT CASMM</p>
+          >ABOUT Code Sparks</p>
 
           <p onClick={() => handleRouteChange(routes.HowItWorks)}
             onKeyUp={() => handleRouteChange(routes.HowItWorks)}
