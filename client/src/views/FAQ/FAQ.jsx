@@ -3,6 +3,7 @@ import Accordion from '../../components/Accordion/Accordion';
 import NavBar from "../../components/NavBar/NavBar";
 import DarkNavBar from "../../components/NavBar/DarkNavBar";
 
+
 import "./FAQ.less"
 
 
@@ -36,6 +37,7 @@ export default function FAQ(props) {
     <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
     {isDarkMode && <DarkNavBar/>}
     {!isDarkMode && <NavBar/>}
+
     <div>
       <div className="accordion">
       <h1>FAQ</h1>

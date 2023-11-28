@@ -12,12 +12,18 @@
   -webkit-box-shadow: 0 1px 5px -1px darken(#colors[tertiary], 70%);
   box-shadow:         0 1px 5px -1px darken(#colors[tertiary], 70%);
 
-    #logo {
-      float: left;
-      padding: 5px;
-      bottom: -5px;
-      height: 4rem;
-      width: auto;
+
+  #logo {
+    float: left;
+    padding: 5px;
+    bottom: -5px;
+    height: 4rem;
+    width: auto;
+    transition: transform 0.3s ease; // This enables a smooth transition effect
+  
+    &:hover {
+      cursor: pointer; // Changes the cursor to indicate the logo is clickable
+      transform: scale(1.1); // Enlarges the logo by 10% on hover
     }
 }
 
@@ -77,6 +83,7 @@
   font-weight: 500;
 }
 
+
 .top-nav p:hover, .dropdown:hover .drop-btn, .dropdown-content p:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -88,6 +95,11 @@
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+
+.settings {
+  float: right;
 }
 
 //when screen is tablet size or less
@@ -108,6 +120,11 @@
 @media screen and (max-width: 768px) {
   .top-nav.responsive #logo {
     display: none;
+  }
+
+
+  .top-nav.responsive .settings {
+    float: left;
   }
   
   .top-nav.responsive {

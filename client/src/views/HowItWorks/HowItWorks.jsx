@@ -33,6 +33,7 @@ export default function HowItWorks(props) {
    <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
       {isDarkMode && <DarkNavBar/>}
       {!isDarkMode && <NavBar/>}
+
       <div id="about-content-container">
         <h1 id="title">How It Works</h1>
         <div id="logos" className="flex space-between">
