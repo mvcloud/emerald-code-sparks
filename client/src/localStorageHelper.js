@@ -39,8 +39,7 @@ export const clearAllHistroy = () => {
 };//function that may be helpful if the local storage is full or if new user logged in
 
 //duplicated function from NavBar.jsx due to export reason
-export const handleLogout = () => {
+export const handleLogout = (navigate) => {
   removeUserSession();
-  const navigate = useNavigate();
   navigate('/');
 };
