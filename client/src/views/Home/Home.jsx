@@ -46,31 +46,31 @@ return (
         </div>
 
         {/* featured projects / display the dark or light mode depending on state */}
-        <div className={isDarkMode ? 'projects-container-dark' : 'projects-container' tabIndex="-1"}>
+        <div className={isDarkMode ? 'projects-container-dark' : 'projects-container'} tabIndex="-1">
             <h1>FEATURED PROJECTS</h1>
             <div className='projects-row'>
-                <div className={isDarkMode ? "project-box-dark" : "project-box" tabIndex="0"}>
+                <div className={isDarkMode ? "project-box-dark" : "project-box"} tabIndex="0">
 
                     <div className='credits-overlay'>
                         <h1>Name 1</h1>
                     </div>
                 </div>
 
-                <div className={isDarkMode ? "project-box-dark" : "project-box" tabIndex="0"}>
+                <div className={isDarkMode ? "project-box-dark" : "project-box"} tabIndex="0">
 
                 <div className='credits-overlay'>
                         <h1>Name 2</h1>
                     </div>
                 </div>
 
-                <div className={isDarkMode ? "project-box-dark" : "project-box" tabIndex="0"}>
+                <div className={isDarkMode ? "project-box-dark" : "project-box"} tabIndex="0">
 
                 <div className='credits-overlay'>
                         <h1>Name 3</h1>
                     </div>
                 </div>
 
-                <div className={isDarkMode ? "project-box-dark" : "project-box" tabIndex="0"}>
+                <div className={isDarkMode ? "project-box-dark" : "project-box"} tabIndex="0">
 
                 <div className='credits-overlay'>
                         <h1>Name 4</h1>
