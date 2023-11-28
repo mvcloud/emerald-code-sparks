@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes, useLocation,useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import PrivateRoute from './Utils/PrivateRoute';
 import About from './views/About/About';
 import HowItWorks from './views/HowItWorks/HowItWorks';
@@ -24,57 +24,53 @@ import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
 import {setHistory, getHistory, clearAllHistroy, handleLogout} from './localStorageHelper';
-import { useNavigate } from 'react-router-dom';
 import { getCurrUser } from './Utils/userState';
 const LOCAL_STORAGE_TIMER = 1000 * 60 * 60 * 24;
-const SESSION_TIMER = 1000 * 60 * 15;
+const SESSION_TIMER = 1000 * 60 * 5;
 
 const App = () => {
   const currentLocation = useLocation();
   const navigate = useNavigate();
   const [isInitial, setIsInitial] = useState(true);
-  const [inactiveTimer, setInactiveTimer] = useState(null);
-  const [sessionTimer, setSessionTimer] = useState(null);
+  const currentUser = getCurrUser();
   const handleSessionTimeout = () => {
-    if(getCurrUser() !== 'DefaultUser'){
-      handleLogout();//use existing logout function
+    if(currentUser !== 'DefaultUser'){
+      handleLogout(navigate);//use existing logout function
     }
     else{
       navigate('/');//for default users, restore to main page
     }
     
   }
-  const resetSessionTimer = () => {
-    clearTimeout(sessionTimer);
-    setSessionTimer(setTimeout(handleSessionTimeout, SESSION_TIMER));//session timer reset function
-  }
-  const resetInactiveTimer = () => {
-    clearTimeout(inactiveTimer);
-    setInactiveTimer(setTimeout(clearAllHistroy, LOCAL_STORAGE_TIMER));//local storage timer reset function
-  }
   const resetTimers = () => {
-    resetSessionTimer();
-    resetInactiveTimer();
-  }//timers reset function for events
+    clearTimeout(window.inactiveTimer);
+    clearTimeout(window.sessionTimer);//clear existing timers//will do nothing on first run
+
+    window.inactiveTimer = setTimeout(clearAllHistroy, LOCAL_STORAGE_TIMER);
+    window.sessionTimer = setTimeout(handleSessionTimeout, SESSION_TIMER);//create new timers
+  };
+
   useEffect(() => {
-    document.addEventListener('mousemove', resetTimers);
-    document.addEventListener('keydown', resetTimers);
-    document.addEventListener('scroll', resetTimers);//active events
+    const events = ['mousemove', 'keydown', 'scroll'];
+    events.forEach(event => 
+      document.addEventListener(event, resetTimers));//if each event, reset timer
+
     resetTimers();
+
     return () => {
-      clearTimeout(inactiveTimer);
-      clearTimeout(sessionTimer);
-      document.removeEventListener('mousemove', resetTimers);
-      document.removeEventListener('keydown', resetTimers);
-      document.removeEventListener('scroll', resetTimers);//active events
-    }
-  },[])
+      events.forEach(event => 
+        document.removeEventListener(event, resetTimers));
+      clearTimeout(window.inactiveTimer);
+      clearTimeout(window.sessionTimer);//if any event triggers, reset timer
+    };
+  }, []);
+
+  
   useEffect(() => {
     const lastRoute = getHistory('lastVisited');
     if(isInitial && lastRoute && lastRoute !== currentLocation.pathname){
       navigate(lastRoute, {replace: true});//load the last path
     }
-    setIsInitial(false);//run on first open!
     setIsInitial(false);//run on first open!
 
   },[currentLocation.pathname]);
