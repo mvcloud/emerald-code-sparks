@@ -39,7 +39,7 @@ export default function OurTeam(props) {
         </div>
         <p tabIndex="0">
           The following team members from the University of Florida have
-          contributed to the design, development, and evaluation of the CASMM
+          contributed to the design, development, and evaluation of the Code Sparks
           application:
           <br />
           <br />

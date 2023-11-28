@@ -23,27 +23,64 @@ import StudentLogin from './views/StudentLogin/StudentLogin';
 import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
-import {setHistory, getHistory} from './localStorageHelper';
-
-
+import {setHistory, getHistory, clearAllHistroy, handleLogout} from './localStorageHelper';
+import { useNavigate } from 'react-router-dom';
+import { getCurrUser } from './Utils/userState';
+const LOCAL_STORAGE_TIMER = 1000 * 60 * 60 * 24;
+const SESSION_TIMER = 1000 * 60 * 15;
 
 const App = () => {
   const currentLocation = useLocation();
   const navigate = useNavigate();
   const [isInitial, setIsInitial] = useState(true);
+  const [inactiveTimer, setInactiveTimer] = useState(null);
+  const [sessionTimer, setSessionTimer] = useState(null);
+  const handleSessionTimeout = () => {
+    if(getCurrUser() !== 'DefaultUser'){
+      handleLogout();//use existing logout function
+    }
+    else{
+      navigate('/');//for default users, restore to main page
+    }
+    
+  }
+  const resetSessionTimer = () => {
+    clearTimeout(sessionTimer);
+    setSessionTimer(setTimeout(handleSessionTimeout, SESSION_TIMER));//session timer reset function
+  }
+  const resetInactiveTimer = () => {
+    clearTimeout(inactiveTimer);
+    setInactiveTimer(setTimeout(clearAllHistroy, LOCAL_STORAGE_TIMER));//local storage timer reset function
+  }
+  const resetTimers = () => {
+    resetSessionTimer();
+    resetInactiveTimer();
+  }//timers reset function for events
+  useEffect(() => {
+    document.addEventListener('mousemove', resetTimers);
+    document.addEventListener('keydown', resetTimers);
+    document.addEventListener('scroll', resetTimers);//active events
+    resetTimers();
+    return () => {
+      clearTimeout(inactiveTimer);
+      clearTimeout(sessionTimer);
+      document.removeEventListener('mousemove', resetTimers);
+      document.removeEventListener('keydown', resetTimers);
+      document.removeEventListener('scroll', resetTimers);//active events
+    }
+  },[])
   useEffect(() => {
     const lastRoute = getHistory('lastVisited');
     if(isInitial && lastRoute && lastRoute !== currentLocation.pathname){
-      
       navigate(lastRoute, {replace: true});//load the last path
-      
     }
+    setIsInitial(false);//run on first open!
     setIsInitial(false);//run on first open!
 
   },[currentLocation.pathname]);
   useEffect(() => {//Note! Don't put this before effect 2 or state tracking fails
     if(!isInitial){
-		 if(currentLocation.pathname==='/sandbox'){window.location.reload();}
+      if(currentLocation.pathname==='/sandbox'){window.location.reload();}
       setHistory('lastVisited', currentLocation.pathname);//store path
     }
   },[currentLocation.pathname]);//render if oath change

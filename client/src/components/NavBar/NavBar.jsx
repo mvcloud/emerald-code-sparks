@@ -1,8 +1,8 @@
 import React from 'react';
 import './NavBar.less';
 import config from './NavBarConfig.json';
-import Logo from '../../assets/casmm_logo.png';
-import { useNavigate } from 'react-router-dom';
+import Logo from '../../assets/code-sparks_logo.png';
+import { Link, useNavigate } from 'react-router-dom';
 import { BarsOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
 import { useGlobalState } from '../../Utils/userState';
@@ -62,7 +62,7 @@ export default function NavBar() {
           <p onClick={() => handleRouteChange(routes.About)}
             onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.About)}}
             tabIndex="0"
-          >ABOUT CASMM</p>
+          >ABOUT Code Sparks</p>
 
           <p onClick={() => handleRouteChange(routes.HowItWorks)}
             onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.HowItWorks)}}

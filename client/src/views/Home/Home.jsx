@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Logo from "../../assets/casmm_logo11_duck.png";
+import Logo from "../../assets/code-sparks_logo11_duck.png";
 import NavBar from "../../components/NavBar/NavBar";
 import DarkNavBar from "../../components/NavBar/DarkNavBar";
 import TeacherLogin from '../TeacherLogin/TeacherLogin';

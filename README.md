@@ -1,11 +1,11 @@
-# CaSMM
+# Code Sparks
 
 > Computation and Science Modeling through Making
 
 Cloud-based programming interface
 
-![Deploy Staging](https://github.com/STEM-C/CaSMM/workflows/Deploy%20Staging/badge.svg)
-![Deploy Production](https://github.com/STEM-C/CaSMM/workflows/Deploy%20Production/badge.svg)
+![Deploy Staging](https://github.com/STEM-C/Code Sparks/workflows/Deploy%20Staging/badge.svg)
+![Deploy Production](https://github.com/STEM-C/Code Sparks/workflows/Deploy%20Production/badge.svg)
 
 <br/>
 
@@ -33,26 +33,26 @@ Cloud-based programming interface
 
 The development environment is composed of five servers. The first one is run with the [Create React App](https://create-react-app.dev/docs/getting-started/) dev server. The later four are containerized with docker and run with [docker compose](https://docs.docker.com/compose/).
 
-* `casmm-client-dev` - localhost:3000
+* `code-sparks-client-dev` - localhost:3000
 
-* `casmm-server-dev` - localhost:1337/admin
+* `code-sparks-server-dev` - localhost:1337/admin
 
-* `casmm-compile-dev` 
+* `code-sparks-compile-dev` 
 
-* `casmm-db-dev` - localhost:5432
+* `code-sparks-db-dev` - localhost:5432
 
-  > The first time the db is started, the [init_db.sh](/scripts/init_db.sh) script will run and seed the database with an environment specific dump. Read about Postgres initialization scripts [here](https://github.com/docker-library/docs/blob/master/postgres/README.md#initialization-scripts). To see how to create this dump, look [here](https://github.com/DavidMagda/CaSMM_fork_2023/blob/develop/scripts/readme.md).
+  > The first time the db is started, the [init_db.sh](/scripts/init_db.sh) script will run and seed the database with an environment specific dump. Read about Postgres initialization scripts [here](https://github.com/docker-library/docs/blob/master/postgres/README.md#initialization-scripts). To see how to create this dump, look [here](https://github.com/DavidMagda/Code Sparks_fork_2023/blob/develop/scripts/readme.md).
 
-* `casmm-compile_queue-dev`
+* `code-sparks-compile_queue-dev`
 
 #### Running
 
-`casmm-client-dev`
+`code-sparks-client-dev`
 
 1. Follow the [client](/client#setup) setup
 2. Run `yarn start` from `/client`
 
-`casmm-server-dev`, `casmm-compile-dev`, `casmm-db-dev`, and `casmm-compile_queue-dev`
+`code-sparks-server-dev`, `code-sparks-compile-dev`, `code-sparks-db-dev`, and `code-sparks-compile_queue-dev`
 
 1. Install [docker](https://docs.docker.com/get-docker/)
 
@@ -67,13 +67,13 @@ The development environment is composed of five servers. The first one is run wi
 
 The staging environment is a Heroku app. It is composed of a web dyno, compile dyno, Heroku Postgres add-on, and Heroku Redis add-on.
 
-* `casmm-staging` - [casmm-staging.herokuapp.com](https://casmm-staging.herokuapp.com/)
+* `code-sparks-staging` - [code-sparks-staging.herokuapp.com](https://code-sparks-staging.herokuapp.com/)
   * The web dyno runs `server`
   * The compile dyno runs `compile`
 
 #### Running
 
-`casmm-staging` is automatically built from the latest commits to branches matching `release/v[0-9].[0-9]`. Heroku runs the container orchestration from there.
+`code-sparks-staging` is automatically built from the latest commits to branches matching `release/v[0-9].[0-9]`. Heroku runs the container orchestration from there.
 
 ### Production
 
@@ -81,13 +81,13 @@ The staging environment is a Heroku app. It is composed of a web dyno, compile d
 
 The production environment is a Heroku app. It is composed of a web dyno, compile dyno, Heroku Postgres add-on, and Heroku Redis add-on.
 
-* `casmm` - [www.casmm.org](https://www.casmm.org/)
+* `code-sparks` - [www.code-sparks.org](https://www.code-sparks.org/)
   * The web dyno runs `server`
   * The compile dyno runs `compile`
 
 #### Running
 
-`casmm` is automatically built from the latest commits to `master`. Heroku runs the container orchestration from there.
+`code-sparks` is automatically built from the latest commits to `master`. Heroku runs the container orchestration from there.
 
 <br/>
 
@@ -103,7 +103,7 @@ This is by far the largest and most important dependency we have. Staying up to 
 
 ## CI/CD
 
-All of the deployments and releases are handled automatically with [GitHub Actions](https://docs.github.com/en/actions). The workflows implement custom [Actions](https://github.com/STEM-C/CaSMM/actions) that live in the [auto](https://github.com/STEM-C/auto) repo.
+All of the deployments and releases are handled automatically with [GitHub Actions](https://docs.github.com/en/actions). The workflows implement custom [Actions](https://github.com/STEM-C/Code Sparks/actions) that live in the [auto](https://github.com/STEM-C/auto) repo.
 
 <br/>
 

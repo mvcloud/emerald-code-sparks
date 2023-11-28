@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+import { removeUserSession } from './Utils/AuthRequests';
 export const getHistory = (key) => {
     try{
         const data = localStorage.getItem(key);
@@ -35,3 +37,10 @@ export const clearAllHistroy = () => {
         console.error("Failed clearing histroy from local storage: ", err);
     }
 };//function that may be helpful if the local storage is full or if new user logged in
+
+//duplicated function from NavBar.jsx due to export reason
+export const handleLogout = () => {
+  removeUserSession();
+  const navigate = useNavigate();
+  navigate('/');
+};
