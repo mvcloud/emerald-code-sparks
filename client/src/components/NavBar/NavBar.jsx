@@ -144,11 +144,11 @@ export default function NavBar(props) {
 
 
       <div className='settings'>
-        <Settings />
+        <Settings isDarkMode= {props.isDarkMode}/>
       </div>
       <p className="icon" onClick={() => toggleNavbar()} 
       onKeyUp={(e) => {if (e.key === "Enter") toggleNavbar()}}
-      tabIndex="0">
+      tabIndex="0" >
       <BarsOutlined />
       </p>
     </div>

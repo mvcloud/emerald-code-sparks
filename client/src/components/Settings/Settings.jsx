@@ -3,7 +3,7 @@ import { SettingOutlined } from '@ant-design/icons';
 import "./Settings.less"
 
 
-export default function Settings() {
+export default function Settings(props) {
     const [originalText, setOriginalText] = useState('en'); 
 
   //google translate
@@ -29,7 +29,7 @@ export default function Settings() {
 
   return (
     <div className="dropdown">
-        <button className='drop-btn'>
+        <button className='drop-btn' style={{backgroundColor: props.isDarkMode ? '#247BA0' : '#F4f4f5'}}>
             <SettingOutlined />
         </button>
         <div className='dropdown-content-settings'>
