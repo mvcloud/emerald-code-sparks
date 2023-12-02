@@ -9,7 +9,7 @@ import { useGlobalState } from '../../Utils/userState';
 import Settings from '../Settings/Settings';
 
 
-export default function NavBar() {
+export default function NavBar(props) {
 
   const [value] = useGlobalState('currUser');
   let navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function NavBar() {
   };
 
   return (
-    <div id='navBar' className='top-nav' tabIndex="0" alt="Navigation Bar">
+    <div id='navBar' className='top-nav' tabIndex="0" alt="Navigation Bar" style={{backgroundColor: props.isDarkMode ? '#247BA0' : '#F4f4f5'}}>
       <img src={Logo} id='logo' alt='logo' tabIndex="0" 
            onClick={() => handleRouteChange(routes.Home)}
            onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.Home)}}/>
@@ -54,7 +54,7 @@ export default function NavBar() {
 
       {shouldShowRoute('About') ? (
         <div className="dropdown" tabIndex="0">
-        <button className="drop-btn" tabIndex="-1">
+        <button className="drop-btn" tabIndex="-1" style={{backgroundColor: props.isDarkMode ? '#247BA0' : '#F4f4f5'}}>
           ABOUT   
         </button>
         <div className="dropdown-content" tabIndex="-1">

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Logo from "../../assets/code-sparks_logo11_duck.png";
 import NavBar from "../../components/NavBar/NavBar";
-import DarkNavBar from "../../components/NavBar/DarkNavBar";
 import TeacherLogin from '../TeacherLogin/TeacherLogin';
 
 import './Home.less';
@@ -35,8 +34,9 @@ const Home = () => {
 return (
     <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'} >
         {/* Display Light or Dark Mode Nav Bar depending on state */}
-        {isDarkMode && <DarkNavBar/>}
-        {!isDarkMode && <NavBar/>}
+        <NavBar isDarkMode ={isDarkMode}/>
+        {/*isDarkMode && <DarkNavBar/>*/}
+        {/*!isDarkMode && <NavBar/>*/}
 
         {/* logo and logins */}
         <div id='join-wrapper' alt="Log in Section" tabIndex="-1">

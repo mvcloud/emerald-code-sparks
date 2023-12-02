@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import BlocklyCanvasPanel from "../../components/ActivityPanels/BlocklyCanvasPanel/BlocklyCanvasPanel"
 import NavBar from "../../components/NavBar/NavBar"
-import DarkNavBar from "../../components/NavBar/DarkNavBar";
+//import DarkNavBar from "../../components/NavBar/DarkNavBar";
 
 import {
   getAuthorizedWorkspaceToolbox,
@@ -101,8 +101,9 @@ export default function BlocklyPage({ isSandbox }) {
 return (
       // change between light and dark css/less depending on state
     <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'} >
-        {isDarkMode && <DarkNavBar/>}
-        {!isDarkMode && <NavBar/>}
+        <NavBar isDarkMode ={isDarkMode}/>
+		{/*isDarkMode && <DarkNavBar/>*/}
+        {/*!isDarkMode && <NavBar/>*/}
       <div className="flex flex-row">
         <BlocklyCanvasPanel activity={activity} setActivity={setActivity} isSandbox={isSandbox} />
         

@@ -3,7 +3,7 @@ import NSF from "../../assets/nsf_logo.png"
 import TAMU from "../../assets/tamu_logo.png"
 import UF from "../../assets/uf_logo.png"
 import NavBar from "../../components/NavBar/NavBar"
-import DarkNavBar from "../../components/NavBar/DarkNavBar";
+//import DarkNavBar from "../../components/NavBar/DarkNavBar";
 import "./About.less"
 
 export default function About(props) {
@@ -34,8 +34,9 @@ export default function About(props) {
   return (
         // change between light and dark css/less depending on state
     <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
-      {isDarkMode && <DarkNavBar/>}
-      {!isDarkMode && <NavBar/>}
+	    <NavBar isDarkMode ={isDarkMode}/>
+      {/*isDarkMode && <DarkNavBar/>*/}
+        {/*!isDarkMode && <NavBar/>*/}
       <div id="about-content-container">
         <h1 id="title" tabIndex="0">About Code Sparks</h1>
         <div id="logos" className="flex space-between">

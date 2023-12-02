@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from "../../components/NavBar/NavBar"
-import DarkNavBar from "../../components/NavBar/DarkNavBar";
+//import DarkNavBar from "../../components/NavBar/DarkNavBar";
 
 import "./OurTeam.less"
 
@@ -31,8 +31,9 @@ export default function OurTeam(props) {
   return (
         // change between light and dark css/less depending on state
     <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
-      {isDarkMode && <DarkNavBar/>}
-      {!isDarkMode && <NavBar/>}
+      <NavBar isDarkMode ={isDarkMode}/>
+	  {/*isDarkMode && <DarkNavBar/>*/}
+        {/*!isDarkMode && <NavBar/>*/}
       <div id="about-content-container">
         <h1 id="title" tabIndex="0">Our Team</h1>
         <div id="logos" className="flex space-between">

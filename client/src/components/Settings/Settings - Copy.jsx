@@ -1,22 +1,20 @@
-import React, {useEffect,useState } from 'react';
+import React, {useEffect} from 'react';
 import { SettingOutlined } from '@ant-design/icons';
 import "./Settings.less"
 
 
 export default function Settings() {
-    const [originalText, setOriginalText] = useState('en'); 
-
   //google translate
   const googleTranslateElementInit = () => {
     new window.google.translate.TranslateElement(
       {
-        pageLanguage: originalText,
+        pageLanguage: "en",
         autoDisplay: false
       },
       "google_translate_element"
     );
   };
-
+  
   useEffect(() => {
     var addScript = document.createElement("script");
     addScript.setAttribute(

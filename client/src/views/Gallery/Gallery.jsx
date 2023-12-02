@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from "../../components/NavBar/NavBar";
-import DarkNavBar from "../../components/NavBar/DarkNavBar";
+//import DarkNavBar from "../../components/NavBar/DarkNavBar";
 import GalleryItem from "./GalleryItem";
 import SearchBar from './Search';
 import FilterComponent from './FilterComponent';
@@ -94,8 +94,9 @@ const Gallery = () => {
     return (
         <>
             <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
-            {isDarkMode && <DarkNavBar/>}
-            {!isDarkMode && <NavBar/>}
+            <NavBar isDarkMode ={isDarkMode}/>
+			{/*isDarkMode && <DarkNavBar/>*/}
+			{/*!isDarkMode && <NavBar/>*/}
                 <h1>Gallery</h1>
                 <SearchBar filterUpdate={filterUpdate} loadedGalleryItems={loadedGalleryItems} />
                 <div className='flex flex-row'>
