@@ -1,15 +1,26 @@
 @import "../../assets/style.less";
 
-.toggle-light {
-    position:relative;
-    background-color: @other;
-    padding: 10px 20px;
-    border-radius: 10px;
-  }
+.faq-dark, .faq-dark h1 {
+  color: #colors[text-primary-dark];
+}
+
+.faq-dark {
+  .accordion-title {
+    background-color: #colors[tertiary-dark];
+
+    &:hover {
+      background-color: #colors[tertiary-dark];
+      background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+    }
   
-  .toggle-dark {
-    position:relative;
-    background-color: @other-dark;
-    padding: 10px 20px;
-    border-radius: 10px;
+    &.active {
+      background-color: #colors[tertiary-dark];
+      background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+    }
   }
+
+  .accordion-content {
+    background-color: #colors[tertiary-dark];
+    background-image: linear-gradient(rgb(0 0 0/20%) 0 0);
+  }
+}

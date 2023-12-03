@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from "../../components/NavBar/NavBar";
-import DarkNavBar from "../../components/NavBar/DarkNavBar";
+//import DarkNavBar from "../../components/NavBar/DarkNavBar";
 import GalleryItem from "./GalleryItem";
 import SearchBar from './Search';
 import FilterComponent from './FilterComponent';
@@ -9,7 +9,7 @@ import { getGalleryObjects } from '../../Utils/requests';
 import "./Gallery.less"
 
 
-const Gallery = () => {
+const Gallery = (props) => {
 
     /*The gallery page will need to have lazy loading implemented
     Therefore, we need to store ALL gallery objects, all which have been loaded (for searching), 
@@ -65,38 +65,11 @@ const Gallery = () => {
         });
     }, []); // Empty dependency array means this effect runs once when the component mounts
 
-
-    // system-mode
-    const [isDarkMode, setDarkMode] = useState(false);
-
-      useEffect(() => {
-        // Check the device's system preferences
-        const defaultMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setDarkMode(defaultMode);
-
-        // Listen for changes in mode preference
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        const handleChange = (event) => {
-            setDarkMode(event.matches);
-        }
-
-        mediaQuery.addEventListener("change", () => {
-            handleChange(event);
-        })
-
-      }, []);
-
-        // change between light and dark mode
-      const toggleMode = () => {
-        setDarkMode(!isDarkMode);
-      };
-
     return (
         <>
-            <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
-            {isDarkMode && <DarkNavBar/>}
-            {!isDarkMode && <NavBar/>}
-                <h1>Gallery</h1>
+            <div className={props.isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'}>
+            <NavBar isDarkMode ={props.isDarkMode}/>
+                <h1 className={props.isDarkMode ? "gallery gallery-dark" : "gallery"}>Gallery</h1>
                 <SearchBar filterUpdate={filterUpdate} loadedGalleryItems={loadedGalleryItems} />
                 <div className='flex flex-row'>
                     <div className='flex flex-column filterCol'>
@@ -106,7 +79,6 @@ const Gallery = () => {
                         {renderedGalleryItems}
                     </div>
                 </div>
-                   <button className={isDarkMode ? 'toggle-dark' : 'toggle-light'} onClick={toggleMode}> Toggle {isDarkMode ? 'Light' : 'Dark'} Mode </button>
             </div>
         </>
     );

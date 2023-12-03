@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import './App.less'
 import PrivateRoute from './Utils/PrivateRoute';
 import About from './views/About/About';
 import HowItWorks from './views/HowItWorks/HowItWorks';
@@ -23,6 +24,7 @@ import StudentLogin from './views/StudentLogin/StudentLogin';
 import ForgetPassword from './views/TeacherLogin/ForgetPassword';
 import ResetPassword from './views/TeacherLogin/ResetPassword';
 import TeacherLogin from './views/TeacherLogin/TeacherLogin';
+import Settings from './components/Settings/Settings';
 import {setHistory, getHistory, clearAllHistroy, handleLogout} from './localStorageHelper';
 import { getCurrUser } from './Utils/userState';
 const LOCAL_STORAGE_TIMER = 1000 * 60 * 60 * 24;//24 hours for public canvas to be erased
@@ -33,6 +35,7 @@ const App = () => {
   const navigate = useNavigate();
   const [isInitial, setIsInitial] = useState(true);
   const currentUser = getCurrUser();
+  const [isDarkMode, setDarkMode] = useState(false);
   const handleSessionTimeout = () => {
     if(currentUser !== 'DefaultUser'){
       handleLogout(navigate);//use existing logout function
@@ -81,26 +84,46 @@ const App = () => {
     }
   },[currentLocation.pathname]);//render if oath change
 
+  useEffect(() => {
+    // Check the device's system preferences
+    const defaultMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(defaultMode);
+
+    // Listen for changes in mode preference
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (event) => {
+        setDarkMode(event.matches);
+    }
+
+    mediaQuery.addEventListener("change", () => {
+        handleChange(event);
+    })
+
+  }, []);
+
+
   if(isInitial){
     return <div>Directing to where you left off...</div>;
   }//loading spinner in case loading time too long
+
+
   
   return (
     <div>
       <Routes>
         
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/how-it-works' element={<HowItWorks />} />
-        <Route path='/faq' element={<FAQ />} />
-        <Route path='our-team' element={<OurTeam />} />
-        <Route path='/gallery' element={<Gallery />} />
-        <Route path='/teacherlogin' element={<TeacherLogin />} />
+        <Route path='/' element={<Home isDarkMode={isDarkMode}/>} />
+        <Route path='/about' element={<About isDarkMode={isDarkMode}/>} />
+        <Route path='/how-it-works' element={<HowItWorks isDarkMode={isDarkMode}/>} />
+        <Route path='/faq' element={<FAQ isDarkMode={isDarkMode}/>} />
+        <Route path='our-team' element={<OurTeam isDarkMode={isDarkMode}/>} />
+        <Route path='/gallery' element={<Gallery isDarkMode={isDarkMode}/>} />
+        <Route path='/teacherlogin' element={<TeacherLogin isDarkMode={isDarkMode}/>} />
         <Route path='/forgot-password' element={<ForgetPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/login' element={<StudentLogin />} />
+        <Route path='/login' element={<StudentLogin isDarkMode={isDarkMode}/>} />
         <Route path='/replay/:saveID' element={<Replay />} />
-        <Route path='/sandbox' element={<BlocklyPage isSandbox={true} />} />
+        <Route path='/sandbox' element={<BlocklyPage isSandbox={true} isDarkMode={isDarkMode}/>} />
         <Route
           path='/report'
           element={
@@ -161,7 +184,7 @@ const App = () => {
           path='/workspace'
           element={
             <PrivateRoute>
-              <BlocklyPage isSandbox={false} />
+              <BlocklyPage isSandbox={false} isDarkMode={isDarkMode}/>
             </PrivateRoute>
           }
         />
@@ -169,7 +192,7 @@ const App = () => {
           path='/activity'
           element={
             <PrivateRoute>
-              <BlocklyPage isSandbox={false} />
+              <BlocklyPage isSandbox={false} isDarkMode={isDarkMode} />
             </PrivateRoute>
           }
         />
@@ -184,6 +207,11 @@ const App = () => {
         <Route path='/bugreport' element={<BugReport />} />
         <Route path='*' element={<NotFound/>} />
       </Routes>
+
+    <div className='settings'>
+      <Settings isDarkMode={isDarkMode} setDarkMode={setDarkMode}/>
+    </div>
+
     </div>
   );
 };

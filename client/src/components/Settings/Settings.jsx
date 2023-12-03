@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { SettingOutlined } from '@ant-design/icons';
 import "./Settings.less"
 
 
-export default function Settings() {
+export default function Settings(props) {
   //google translate
   const googleTranslateElementInit = () => {
     new window.google.translate.TranslateElement(
@@ -25,15 +25,30 @@ export default function Settings() {
     window.googleTranslateElementInit = googleTranslateElementInit;
   }, []);
 
+    // change between light and dark mode
+    const toggleMode = () => {
+      props.setDarkMode(!props.isDarkMode);
+    };
+
+  const [dropdownOpen, setDropdownStatus] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownStatus(!dropdownOpen);
+  };
+
   return (
-    <div className="dropdown">
-        <button className='drop-btn'>
-            <SettingOutlined />
+    <div className={props.isDarkMode ? "dark-mode" : ""}>
+      <div className="dropdown">
+        <button className='drop-btn-settings'>
+            <SettingOutlined className='setting-icon' onClick={toggleDropdown}/>
         </button>
-        <div className='dropdown-content-settings'>
+        <div className={dropdownOpen ? 'dropdown-content-settings show' : 'dropdown-content-settings'} >
+            <button className={'toggle'} onClick={toggleMode}> Toggle {props.isDarkMode ? 'Light' : 'Dark'} Mode </button>
             <div id="google_translate_element"></div>
         </div>
     </div>
+    </div>
   );
 }
+
 
