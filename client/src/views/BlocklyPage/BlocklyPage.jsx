@@ -12,7 +12,7 @@ import {
 } from "../../Utils/requests"
 import { useGlobalState } from "../../Utils/userState"
 
-export default function BlocklyPage({ isSandbox }) {
+export default function BlocklyPage({ isSandbox, isDarkMode }) {
   const [value] = useGlobalState("currUser")
   const [activity, setActivity] = useState({})
   const navigate = useNavigate()
@@ -74,41 +74,13 @@ export default function BlocklyPage({ isSandbox }) {
     setup()
   }, [isSandbox, navigate, value.role])
 
-  const [isDarkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    // Check the device's system preferences
-    const defaultMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setDarkMode(defaultMode);
-
-    // Listen for changes in mode preference
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (event) => {
-        setDarkMode(event.matches);
-    }
-
-    mediaQuery.addEventListener("change", () => {
-        handleChange(event);
-    })
-
-  }, []);
-
-    // change between light and dark mode
-  const toggleMode = () => {
-    setDarkMode(!isDarkMode);
-  };
-
 return (
       // change between light and dark css/less depending on state
     <div className={isDarkMode ? 'container-dark nav-padding' : 'container nav-padding'} >
         <NavBar isDarkMode ={isDarkMode}/>
-		{/*isDarkMode && <DarkNavBar/>*/}
-        {/*!isDarkMode && <NavBar/>*/}
       <div className="flex flex-row">
         <BlocklyCanvasPanel activity={activity} setActivity={setActivity} isSandbox={isSandbox} />
-        
       </div>
-      <button className={isDarkMode ? 'toggle-dark' : 'toggle-light'} onClick={toggleMode}> Toggle {isDarkMode ? 'Light' : 'Dark'} Mode </button>
     </div>
   )
 }

@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BarsOutlined } from '@ant-design/icons';
 import { removeUserSession } from '../../Utils/AuthRequests';
 import { useGlobalState } from '../../Utils/userState';
-import Settings from '../Settings/Settings';
 
 
 export default function NavBar(props) {
@@ -39,7 +38,8 @@ export default function NavBar(props) {
   };
 
   return (
-    <div id='navBar' className='top-nav' tabIndex="0" alt="Navigation Bar" style={{backgroundColor: props.isDarkMode ? '#247BA0' : '#F4f4f5'}}>
+    <div className={props.isDarkMode ? "dark-mode" : ""}>
+      <div id='navBar' className='top-nav' tabIndex="0" alt="Navigation Bar" style={{backgroundColor: props.isDarkMode ? '#247BA0' : '#F4f4f5'}}>
       <img src={Logo} id='logo' alt='logo' tabIndex="0" 
            onClick={() => handleRouteChange(routes.Home)}
            onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.Home)}}/>
@@ -49,6 +49,7 @@ export default function NavBar(props) {
         <p onClick={() => handleRouteChange(routes.Home)}
           onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.Home)}}
           tabIndex="0"
+          id="first"
         >HOME</p>
       ) : null}
 
@@ -61,6 +62,7 @@ export default function NavBar(props) {
           <p onClick={() => handleRouteChange(routes.About)}
             onKeyUp={(e) => {if (e.key === 'Enter') handleRouteChange(routes.About)}}
             tabIndex="0"
+            id="about"
           >ABOUT Code Sparks</p>
 
           <p onClick={() => handleRouteChange(routes.HowItWorks)}
@@ -141,16 +143,13 @@ export default function NavBar(props) {
           onKeyUp={(e) => {if (e.key === 'Enter') handleLogout()}}
           tabIndex="0">SIGN OUT</p>
       ) : null}
-
-
-      <div className='settings'>
-        <Settings isDarkMode= {props.isDarkMode}/>
-      </div>
       <p className="icon" onClick={() => toggleNavbar()} 
       onKeyUp={(e) => {if (e.key === "Enter") toggleNavbar()}}
       tabIndex="0" >
       <BarsOutlined />
       </p>
+    </div>
+
     </div>
   );
 }
