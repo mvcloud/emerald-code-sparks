@@ -49,7 +49,7 @@ function Settings(props) {
   );
 }
 
-Settings.PropTypes = {
+Settings.propTypes = {
   isDarkMode: PropTypes.bool.isRequired,
   setDarkMode: PropTypes.func.isRequired
 };
