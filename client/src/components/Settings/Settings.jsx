@@ -4,7 +4,7 @@ import "./Settings.less"
 import PropTypes from 'prop-types';
 
 
-export default function Settings(props) {
+function Settings(props) {
   //google translate
   function googleTranslateElementInit() {
     new google.translate.TranslateElement(
@@ -54,3 +54,4 @@ Settings.PropTypes = {
   setDarkMode: PropTypes.func.isRequired
 };
 
+export default Settings;
